@@ -1,5 +1,5 @@
 {
-  "name": "@vino/ui",
+  "name": "@vino/dt-design",
   "version": "0.0.1",
   "description": "",
   "keywords": [],
@@ -7,13 +7,16 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
     "@vue/tsconfig": "^0.1.3",
     "eslint": "^8.15.0",
     "typescript": "^4.6.4",
     "vite": "^2.9.8",
+    "vite-plugin-dts": "^1.1.1",
     "vitest": "^0.12.0"
   },
   "dependencies": {
