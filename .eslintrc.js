@@ -141,7 +141,7 @@ module.exports = defineConfig({
     ],
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
-    '@typescript-eslint/prefer-ts-expect-error': 'error',
+    '@typescript-eslint/prefer-ts-expect-error': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
