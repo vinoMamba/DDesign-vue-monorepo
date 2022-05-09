@@ -87,6 +87,7 @@ importers:
 
   site:
     specifiers:
+      '@vino/dt-design': workspace:^
       '@vitejs/plugin-vue': ^2.3.1
       typescript: ^4.5.4
       vite: ^2.9.7
@@ -94,6 +95,7 @@ importers:
       vue: ^3.2.25
       vue-tsc: ^0.34.7
     dependencies:
+      '@vino/dt-design': link:../packages/ui
       vue: 3.2.33
     devDependencies:
       '@vitejs/plugin-vue': 2.3.2_vite@2.9.8+vue@3.2.33
