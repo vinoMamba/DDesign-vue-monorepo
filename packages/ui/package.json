@@ -5,7 +5,14 @@
   "keywords": [],
   "license": "MIT",
   "author": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "dist"
+  ],
   "scripts": {
     "build": "vite build"
   },
