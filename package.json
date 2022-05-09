@@ -9,6 +9,7 @@
   "scripts": {
     "build:ui": "pnpm --filter=@vino/dt-design build ",
     "test:ui": "pnpm --filter=@vino/dt-design test:unit",
+    "ui:preview": "pnpm --filter=@vino/dt-design run dev",
     "site": "pnpm --filter=site dev",
     "site-build": "pnpm --filter=site run build",
     "lint": "eslint .",
