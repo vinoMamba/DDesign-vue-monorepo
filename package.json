@@ -7,10 +7,9 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "build:ui": "pnpm build --filter=@vino/dt-design",
-    "site": "pnpm dev --filter=site",
-    "site-build": "pnpm run build --filter=site",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "pnpm --filter=@vino/dt-design build ",
+    "site": "pnpm --filter=site dev",
+    "site-build": "pnpm --filter=site run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky install"
