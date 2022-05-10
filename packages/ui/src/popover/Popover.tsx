@@ -1,4 +1,12 @@
-import { defineComponent, nextTick, onMounted, onUnmounted, ref, type PropType } from 'vue'
+import {
+  defineComponent,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  ref,
+  Transition,
+  type PropType,
+} from 'vue'
 import './style'
 
 export default defineComponent({
@@ -67,7 +75,14 @@ export default defineComponent({
     })
     return () => (
       <div class="dtd-popover" ref={popoverRef}>
-        {visible.value ? <div class="dtd-popover-content-wrapper">{slots.content?.()}</div> : null}
+        <Transition>
+          {visible.value ? (
+            <div class="dtd-popover-content-wrapper">
+              {slots.title ? <div class="dtd-popover-title">{slots.title()}</div> : null}
+              {slots.content ? <div class="dtd-popover-content">{slots.content()}</div> : null}
+            </div>
+          ) : null}
+        </Transition>
         {slots.default?.()}
       </div>
     )

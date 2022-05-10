@@ -1,7 +1,9 @@
 <template>
   <main>
-    <h1>Site</h1>
     <DPopover>
+      <template #title>
+        <span>Title</span>
+      </template>
       <template #content>
         <span>content</span>
       </template>
