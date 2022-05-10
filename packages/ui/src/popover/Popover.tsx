@@ -24,13 +24,22 @@ export default defineComponent({
     const visible = ref(false)
 
     function onClickOutside(event: MouseEvent) {
-      if (popoverRef.value && !popoverRef.value.contains(event.target as Node)) {
+      if (
+        !popoverContentRef.value?.contains(event.target as Node) &&
+        !popoverTriggerRef.value?.contains(event.target as Node)
+      ) {
         close()
       }
     }
     function open() {
       visible.value = true
       nextTick(() => {
+        popoverContentRef.value && document.body.appendChild(popoverContentRef.value)
+        if (popoverTriggerRef.value) {
+          const { top, left } = popoverTriggerRef.value.getBoundingClientRect()
+          popoverContentRef.value!.style.left = left + 'px'
+          popoverContentRef.value!.style.top = top + 'px'
+        }
         document.addEventListener('click', onClickOutside)
       })
     }
@@ -38,6 +47,7 @@ export default defineComponent({
     function close() {
       visible.value = false
       nextTick(() => {
+        popoverContentRef.value && document.body.removeChild(popoverContentRef.value)
         document.removeEventListener('click', onClickOutside)
       })
     }
