@@ -27,10 +27,13 @@ describe('DPopover', () => {
         default: () => h('button', {}, 'Named Slot'),
       },
     })
+    const div = document.createElement('div')
+    div.appendChild(wrapper.element)
+    document.body.appendChild(div)
     await wrapper.find('button').trigger('click')
-    expect(wrapper.html()).toContain('content')
+    expect(document.body.innerHTML).toContain('content')
     await wrapper.find('button').trigger('click')
-    expect(wrapper.html()).not.toContain('content')
+    expect(document.body.innerHTML).not.toContain('content')
   })
   it('cant set trigger prop', async () => {
     const wrapper = mount(DPopover, {
@@ -42,22 +45,12 @@ describe('DPopover', () => {
         trigger: 'hover',
       },
     })
+    const div = document.createElement('div')
+    div.appendChild(wrapper.element)
+    document.body.appendChild(div)
     await wrapper.trigger('mouseenter')
-    expect(wrapper.html()).toContain('content')
+    expect(document.body.innerHTML).toContain('content')
     await wrapper.trigger('mouseleave')
-    expect(wrapper.html()).not.toContain('content')
+    expect(document.body.innerHTML).not.toContain('content')
   })
-  // it('can close the popover when click outside', async () => {
-  //   const wrapper = mount(DPopover, {
-  //     slots: {
-  //       content: () => '<p>content</p>',
-  //       default: () => '<button>按钮</button>',
-  //     },
-  //   })
-  //   await wrapper.trigger('click')
-  //   expect(wrapper.html()).toContain('content')
-  //   document.body.addEventListener('click', () => {
-  //     expect(wrapper.html()).not.toContain('content')
-  //   })
-  // })
 })
