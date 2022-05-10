@@ -16,6 +16,23 @@ export default defineComponent({
       type: String as PropType<'click' | 'hover'>,
       default: 'click',
     },
+    placement: {
+      type: String as PropType<
+        | 'topLeft'
+        | 'top'
+        | 'topRight'
+        | 'rightTop'
+        | 'right'
+        | 'rightBottom'
+        | 'bottomRight'
+        | 'bottom'
+        | 'bottomLeft'
+        | 'leftBottom'
+        | 'left'
+        | 'leftTop'
+      >,
+      default: 'top',
+    },
   },
   setup(props, { slots }) {
     const popoverRef = ref<HTMLDivElement | null>(null)
@@ -23,6 +40,63 @@ export default defineComponent({
     const popoverTriggerRef = ref<HTMLDivElement | null>(null)
     const visible = ref(false)
 
+    function positionContent() {
+      document.body.appendChild(popoverContentRef.value!)
+      const { width, height, left, top } = popoverTriggerRef.value!.getBoundingClientRect()
+      const { height: height2, width: width2 } = popoverContentRef.value!.getBoundingClientRect()
+      const positions = {
+        top: {
+          top: top + window.scrollY - height2 - 10,
+          left: left + window.scrollX - width2 / 2 + width / 2,
+        },
+        topRight: {
+          top: top + window.scrollY - height2 - 10,
+          left: left + window.scrollX - width2 + width,
+        },
+        topLeft: {
+          top: top + window.scrollY - height2 - 10,
+          left: left + window.scrollX,
+        },
+        right: {
+          top: top + window.scrollY - height2 / 2 + height / 2,
+          left: left + window.scrollX + width + 10,
+        },
+        rightTop: {
+          top: top + window.scrollY,
+          left: left + window.scrollX + width + 10,
+        },
+        rightBottom: {
+          top: top + window.scrollY + height - height2,
+          left: left + window.scrollX + width + 10,
+        },
+        bottom: {
+          top: top + height + window.scrollY + 10,
+          left: left + window.scrollX - width2 / 2 + width / 2,
+        },
+        bottomLeft: {
+          top: top + height + window.scrollY + 10,
+          left: left + window.scrollX,
+        },
+        bottomRight: {
+          top: top + height + window.scrollY + 10,
+          left: left + window.scrollX - width2 + width,
+        },
+        left: {
+          top: top + window.scrollY + (height - height2) / 2,
+          left: left + window.scrollX - width2 - 10,
+        },
+        leftTop: {
+          top: top + window.scrollY,
+          left: left + window.scrollX - width2 - 10,
+        },
+        leftBottom: {
+          top: top + window.scrollY + height - height2,
+          left: left + window.scrollX - width2 - 10,
+        },
+      }
+      popoverContentRef.value!.style.left = positions[props.placement].left + 'px'
+      popoverContentRef.value!.style.top = positions[props.placement].top + 'px'
+    }
     function onClickOutside(event: MouseEvent) {
       if (
         !popoverContentRef.value?.contains(event.target as Node) &&
@@ -34,12 +108,7 @@ export default defineComponent({
     function open() {
       visible.value = true
       nextTick(() => {
-        popoverContentRef.value && document.body.appendChild(popoverContentRef.value)
-        if (popoverTriggerRef.value) {
-          const { top, left } = popoverTriggerRef.value.getBoundingClientRect()
-          popoverContentRef.value!.style.left = left + 'px'
-          popoverContentRef.value!.style.top = top + 'px'
-        }
+        positionContent()
         document.addEventListener('click', onClickOutside)
       })
     }

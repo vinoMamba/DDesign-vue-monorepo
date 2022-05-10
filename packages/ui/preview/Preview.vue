@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>title h1</h1>
-    <DPopover>
+    <DPopover placement="leftBottom">
       <template #title>
         <span>Title</span>
       </template>
