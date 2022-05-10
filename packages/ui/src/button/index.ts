@@ -3,7 +3,7 @@ import Button from './Button'
 
 Button.install = (app: App) => {
   app.component(Button.name, Button)
-  return Button
+  return app
 }
 
 export default Button as typeof Button & Plugin
