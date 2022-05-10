@@ -19,6 +19,8 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const popoverRef = ref<HTMLDivElement | null>(null)
+    const popoverContentRef = ref<HTMLDivElement | null>(null)
+    const popoverTriggerRef = ref<HTMLDivElement | null>(null)
     const visible = ref(false)
 
     function onClickOutside(event: MouseEvent) {
@@ -41,7 +43,7 @@ export default defineComponent({
     }
 
     function toggleVisibility(event: MouseEvent) {
-      if (popoverRef.value && popoverRef.value.contains(event.target as Node)) {
+      if (popoverTriggerRef.value && popoverTriggerRef.value.contains(event.target as Node)) {
         visible.value ? close() : open()
       }
     }
@@ -77,13 +79,13 @@ export default defineComponent({
       <div class="dtd-popover" ref={popoverRef}>
         <Transition>
           {visible.value ? (
-            <div class="dtd-popover-content-wrapper">
+            <div class="dtd-popover-content-wrapper" ref={popoverContentRef}>
               {slots.title ? <div class="dtd-popover-title">{slots.title()}</div> : null}
               {slots.content ? <div class="dtd-popover-content">{slots.content()}</div> : null}
             </div>
           ) : null}
         </Transition>
-        {slots.default?.()}
+        <div ref={popoverTriggerRef}>{slots.default?.()}</div>
       </div>
     )
   },
