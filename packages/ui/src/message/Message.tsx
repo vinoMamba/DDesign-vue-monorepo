@@ -1,19 +1,11 @@
-import { computed, defineComponent, onMounted, ref, Transition, type PropType } from 'vue'
-import { InformationCircleOutline } from '@vicons/ionicons5'
+import { computed, defineComponent, onMounted, ref, Transition } from 'vue'
+import { MessageIcon } from './MessageIcon'
+import { messageProps } from './messageProps'
 import './style'
 
 export default defineComponent({
   name: 'DMessage',
-  props: {
-    duration: {
-      type: Number,
-      default: 3000,
-    },
-    type: {
-      type: String as PropType<'success' | 'warning' | 'error' | 'info'>,
-      default: 'info',
-    },
-  },
+  props: messageProps,
   setup(props, { slots }) {
     const messageVisibleRef = ref(true)
     onMounted(() => {
@@ -33,7 +25,7 @@ export default defineComponent({
       <Transition>
         {messageVisibleRef.value ? (
           <div class={classRef.value}>
-            <InformationCircleOutline />
+            {MessageIcon(props.type)}
             {slots.default?.()}
           </div>
         ) : null}
