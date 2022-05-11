@@ -1,8 +1,17 @@
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import './style'
 
 export default defineComponent({
   name: 'DMessage',
   setup(props, { slots }) {
-    return () => <div>{slots.default?.()}</div>
+    const messageVisibleRef = ref(true)
+    onMounted(() => {
+      setTimeout(() => {
+        messageVisibleRef.value = false
+      }, 3000)
+    })
+    return () => (
+      <div>{messageVisibleRef.value && <div class="dtd-message">{slots.default?.()}</div>}</div>
+    )
   },
 })
