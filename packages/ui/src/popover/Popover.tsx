@@ -5,6 +5,8 @@ import {
   onUnmounted,
   ref,
   Transition,
+  watch,
+  watchEffect,
   type PropType,
 } from 'vue'
 import './style'
@@ -33,8 +35,13 @@ export default defineComponent({
       >,
       default: 'top',
     },
+    show: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
   },
-  setup(props, { slots }) {
+  emits: ['update:show'],
+  setup(props, { slots, emit }) {
     const popoverRef = ref<HTMLDivElement | null>(null)
     const popoverContentRef = ref<HTMLDivElement | null>(null)
     const popoverTriggerRef = ref<HTMLDivElement | null>(null)
@@ -150,6 +157,15 @@ export default defineComponent({
 
     onMounted(() => {
       bindEventToPopover()
+    })
+    //watch visible
+    watch(visible, (value1) => {
+      emit('update:show', value1)
+    })
+    watchEffect(() => {
+      if (!props.show) {
+        close()
+      }
     })
     onUnmounted(() => {
       unbindEventToPopover()
