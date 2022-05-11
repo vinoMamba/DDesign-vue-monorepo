@@ -4,11 +4,23 @@
   left: 50%;
   transform: translate(-50%);
   display: inline-block;
-  background: var(--popover_bg_color);
+  background: var(--common_blue1_color);
   color: var(--common_white1_color);
   padding: 8px 12px;
   box-shadow: 0 8px 24px 0 rgb(0 0 0 / 16%);
   border-radius: 6px;
   text-align: center;
   z-index: 1010;
+
+  &-success {
+    background: var(--common_green1_color);
+  }
+
+  &-warning {
+    background: var(--common_orange1_color);
+  }
+
+  &-error {
+    background: var(--common_red1_color);
+  }
 }

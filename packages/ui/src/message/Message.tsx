@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, Transition } from 'vue'
+import { computed, defineComponent, onMounted, ref, Transition, type PropType } from 'vue'
 import './style'
 
 export default defineComponent({
@@ -7,6 +7,10 @@ export default defineComponent({
     duration: {
       type: Number,
       default: 3000,
+    },
+    type: {
+      type: String as PropType<'success' | 'warning' | 'error' | 'info'>,
+      default: 'info',
     },
   },
   setup(props, { slots }) {
@@ -17,9 +21,16 @@ export default defineComponent({
           messageVisibleRef.value = false
         }, props.duration)
     })
+    const classRef = computed(() => {
+      const { type } = props
+      return {
+        'dtd-message': true,
+        [`dtd-message-${type}`]: true,
+      }
+    })
     return () => (
       <Transition>
-        {messageVisibleRef.value ? <div class="dtd-message">{slots.default?.()}</div> : null}
+        {messageVisibleRef.value ? <div class={classRef.value}>{slots.default?.()}</div> : null}
       </Transition>
     )
   },

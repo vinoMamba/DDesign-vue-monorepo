@@ -3,8 +3,10 @@ import DMessage from './Message'
 
 export interface MessageContextProp {
   success: (message: string | VNode, duration?: number) => void
+  info: (message: string | VNode, duration?: number) => void
+  warning: (message: string | VNode, duration?: number) => void
+  error: (message: string | VNode, duration?: number) => void
 }
-
 const messageSymbolKey: InjectionKey<MessageContextProp> = Symbol('message')
 
 export default {
@@ -12,10 +14,31 @@ export default {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const message: MessageContextProp = {
+      info: (message: string | VNode, duration?: number) => {
+        createApp({
+          render() {
+            return h(DMessage, { duration, type: 'info' }, () => message)
+          },
+        }).mount(div)
+      },
       success: (message: string | VNode, duration?: number) => {
         createApp({
           render() {
-            return h(DMessage, { duration }, () => message)
+            return h(DMessage, { duration, type: 'success' }, () => message)
+          },
+        }).mount(div)
+      },
+      warning: (message: string | VNode, duration?: number) => {
+        createApp({
+          render() {
+            return h(DMessage, { duration, type: 'warning' }, () => message)
+          },
+        }).mount(div)
+      },
+      error: (message: string | VNode, duration?: number) => {
+        createApp({
+          render() {
+            return h(DMessage, { duration, type: 'error' }, () => message)
           },
         }).mount(div)
       },
