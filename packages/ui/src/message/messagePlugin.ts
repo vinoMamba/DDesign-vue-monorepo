@@ -9,38 +9,34 @@ export interface MessageContextProp {
 }
 const messageSymbolKey: InjectionKey<MessageContextProp> = Symbol('message')
 
+const renderMessage = (
+  type: 'info' | 'success' | 'warning' | 'error',
+  message: string | VNode,
+  duration?: number,
+) => {
+  const instance = createApp({
+    render() {
+      return h(DMessage, { duration, type }, () => message)
+    },
+  })
+  return instance
+}
 export default {
   install(app: App) {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const message: MessageContextProp = {
       info: (message: string | VNode, duration?: number) => {
-        createApp({
-          render() {
-            return h(DMessage, { duration, type: 'info' }, () => message)
-          },
-        }).mount(div)
+        renderMessage('info', message, duration).mount(div)
       },
       success: (message: string | VNode, duration?: number) => {
-        createApp({
-          render() {
-            return h(DMessage, { duration, type: 'success' }, () => message)
-          },
-        }).mount(div)
+        renderMessage('success', message, duration).mount(div)
       },
       warning: (message: string | VNode, duration?: number) => {
-        createApp({
-          render() {
-            return h(DMessage, { duration, type: 'warning' }, () => message)
-          },
-        }).mount(div)
+        renderMessage('warning', message, duration).mount(div)
       },
       error: (message: string | VNode, duration?: number) => {
-        createApp({
-          render() {
-            return h(DMessage, { duration, type: 'error' }, () => message)
-          },
-        }).mount(div)
+        renderMessage('error', message, duration).mount(div)
       },
     }
     app.provide(messageSymbolKey, message)

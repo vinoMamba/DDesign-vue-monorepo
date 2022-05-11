@@ -12,6 +12,7 @@
       <DButton>按钮</DButton>
     </DPopover>
     <DButton @click="showMessage">show message</DButton>
+    <DButton @click="showMessage1">show message</DButton>
   </main>
 </template>
 
@@ -21,7 +22,10 @@
   import { useMessage } from '../src/message/messagePlugin'
   const message = useMessage()
   const showMessage = () => {
-    message.success(h('span', {}, 'message success'), 0)
+    message.success(h('span', {}, 'message success'))
+  }
+  const showMessage1 = () => {
+    message.error(h('span', {}, 'message error'))
   }
   const close = () => {
     showRef.value = !showRef.value
