@@ -21,7 +21,7 @@
   import { useMessage } from '../src/message/messagePlugin'
   const message = useMessage()
   const showMessage = () => {
-    message.success(h('span', {}, 'message success'))
+    message.success(h('span', {}, 'message success'), 0)
   }
   const close = () => {
     showRef.value = !showRef.value
