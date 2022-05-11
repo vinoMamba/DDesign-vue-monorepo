@@ -16,12 +16,12 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref, h } from 'vue'
   import { DButton, DPopover } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
   const message = useMessage()
   const showMessage = () => {
-    message.success('Cause you walked hand in hand With another man in my place')
+    message.success(h('span', {}, 'message success'))
   }
   const close = () => {
     showRef.value = !showRef.value

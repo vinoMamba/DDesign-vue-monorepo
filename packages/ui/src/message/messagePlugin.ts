@@ -1,8 +1,8 @@
-import { inject, type App, h, createApp, type InjectionKey } from 'vue'
+import { inject, type App, h, createApp, type InjectionKey, type VNode } from 'vue'
 import DMessage from './Message'
 
 export interface MessageContextProp {
-  success: (message: string) => void
+  success: (message: string | VNode, duration?: number) => void
 }
 
 const messageSymbolKey: InjectionKey<MessageContextProp> = Symbol('message')
@@ -12,10 +12,10 @@ export default {
     const div = document.createElement('div')
     document.body.appendChild(div)
     const message: MessageContextProp = {
-      success: (message: string) => {
+      success: (message: string | VNode, duration?: number) => {
         createApp({
           render() {
-            return h(DMessage, {}, message)
+            return h(DMessage, { duration }, () => message)
           },
         }).mount(div)
       },
