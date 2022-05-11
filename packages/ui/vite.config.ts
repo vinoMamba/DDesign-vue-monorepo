@@ -16,7 +16,7 @@ export default defineConfig({
     outDir: 'es',
     minify: false,
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@vicons/ionicons5'],
       input: ['src/index.ts'],
       output: [
         {

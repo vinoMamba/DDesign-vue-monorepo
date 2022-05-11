@@ -1,4 +1,5 @@
 import { computed, defineComponent, onMounted, ref, Transition, type PropType } from 'vue'
+import { InformationCircleOutline } from '@vicons/ionicons5'
 import './style'
 
 export default defineComponent({
@@ -30,7 +31,12 @@ export default defineComponent({
     })
     return () => (
       <Transition>
-        {messageVisibleRef.value ? <div class={classRef.value}>{slots.default?.()}</div> : null}
+        {messageVisibleRef.value ? (
+          <div class={classRef.value}>
+            <InformationCircleOutline />
+            {slots.default?.()}
+          </div>
+        ) : null}
       </Transition>
     )
   },
