@@ -1,6 +1,7 @@
 import type { App, Plugin } from 'vue'
 import Message from './Message'
-export * as messagePlugin from './messagePlugin'
+export { useMessage } from './messagePlugin'
+export { default as messagePlugin } from './messagePlugin'
 
 Message.install = (app: App) => {
   app.component(Message.name, Message)

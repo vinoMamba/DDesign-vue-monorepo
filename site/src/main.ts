@@ -1,4 +1,7 @@
 import { createApp } from 'vue'
+import messagePlugin from '@vino/dt-design'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.use(messagePlugin)
+app.mount('#app')

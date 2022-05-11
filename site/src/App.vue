@@ -1,6 +1,10 @@
 <script setup lang="ts">
-  import { DButton, DPopover } from '@vino/dt-design'
+  import { DButton, DPopover, useMessage } from '@vino/dt-design'
   import '@vino/dt-design/es/style.css'
+  const message = useMessage()
+  const click = () => {
+    message.success('成功')
+  }
 </script>
 
 <template>
@@ -9,7 +13,7 @@
     <template #content>
       <p>test</p>
     </template>
-    <DButton type="primary">确定</DButton>
+    <DButton type="primary" @click="click">确定</DButton>
   </DPopover>
   <DPopover trigger="hover">
     <template #content>
