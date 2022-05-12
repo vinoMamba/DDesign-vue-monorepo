@@ -16,12 +16,22 @@
     <DTooltip title="tooltip message">
       <p>show tooltip</p>
     </DTooltip>
+    <DPopoconfirm
+      title="删除此文档吗？"
+      content="你可以再回收站中找到删除的文档"
+      ok-text="删除"
+      cancel-text="取消"
+      @confirm="confirm"
+      @cancel="cancel"
+    >
+      <DButton>test Popoconfirm</DButton>
+    </DPopoconfirm>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref, h } from 'vue'
-  import { DButton, DPopover, DTooltip } from '../src'
+  import { DButton, DPopover, DTooltip, DPopoconfirm } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
   const message = useMessage()
   const showMessage = () => {
@@ -34,6 +44,13 @@
     showRef.value = !showRef.value
   }
   const showRef = ref(false)
+
+  const confirm = () => {
+    console.log('confirm')
+  }
+  const cancel = () => {
+    console.log('cancel')
+  }
 </script>
 <style scoped>
   main {
