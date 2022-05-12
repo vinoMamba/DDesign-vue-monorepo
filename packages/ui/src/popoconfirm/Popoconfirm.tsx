@@ -1,4 +1,5 @@
-import { defineComponent, ref, type PropType } from 'vue'
+import type { ButtonProps } from '@/button/buttonTypes'
+import { defineComponent, ref, type HTMLAttributes, type PropType } from 'vue'
 import { DPopover, DButton } from '../../'
 import './style'
 
@@ -23,6 +24,9 @@ export default defineComponent({
       type: String as PropType<'primary' | 'danger'>,
       default: 'primary',
     },
+    okButtonProps: {
+      type: Object as PropType<ButtonProps & HTMLAttributes>,
+    },
   },
   emits: ['confirm', 'cancel'],
   setup(props, { slots, emit }) {
@@ -45,7 +49,7 @@ export default defineComponent({
               <p class="dtd-popoconfirm-content">{props.content}</p>
               <div class="dtd-popoconfirm-content-button-wrapper">
                 <DButton onClick={() => close()}>{props.cancelText}</DButton>
-                <DButton onClick={() => confirm()} type={props.okType}>
+                <DButton onClick={() => confirm()} type={props.okType} {...props.okButtonProps}>
                   {props.okText}
                 </DButton>
               </div>
