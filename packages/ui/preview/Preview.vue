@@ -13,12 +13,15 @@
     </DPopover>
     <DButton @click="showMessage">show message</DButton>
     <DButton @click="showMessage1">show message</DButton>
+    <DTooltip title="tooltip message">
+      <p>show tooltip</p>
+    </DTooltip>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref, h } from 'vue'
-  import { DButton, DPopover } from '../src'
+  import { DButton, DPopover, DTooltip } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
   const message = useMessage()
   const showMessage = () => {
@@ -35,5 +38,9 @@
 <style scoped>
   main {
     padding: 100px;
+  }
+  p {
+    padding: 0;
+    margin: 0;
   }
 </style>
