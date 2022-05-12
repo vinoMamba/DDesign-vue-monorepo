@@ -1,4 +1,4 @@
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent, ref, type PropType } from 'vue'
 import { DPopover, DButton } from '../../'
 import './style'
 
@@ -25,17 +25,29 @@ export default defineComponent({
     },
   },
   emits: ['confirm', 'cancel'],
-  setup(props, { slots }) {
+  setup(props, { slots, emit }) {
+    const showRef = ref(false)
+    function close() {
+      showRef.value = false
+      emit('cancel')
+    }
+    function confirm() {
+      showRef.value = false
+      emit('confirm')
+    }
+
     return () => (
-      <DPopover>
+      <DPopover v-model:show={showRef.value}>
         {{
           title: () => <p class="dtd-popoconfirm-title">{props.title}</p>,
           content: () => (
             <div class="dtd-popoconfirm-content-wrapper">
               <p class="dtd-popoconfirm-content">{props.content}</p>
               <div class="dtd-popoconfirm-content-button-wrapper">
-                <DButton>{props.cancelText}</DButton>
-                <DButton type={props.okType}>{props.okText}</DButton>
+                <DButton onClick={() => close()}>{props.cancelText}</DButton>
+                <DButton onClick={() => confirm()} type={props.okType}>
+                  {props.okText}
+                </DButton>
               </div>
             </div>
           ),

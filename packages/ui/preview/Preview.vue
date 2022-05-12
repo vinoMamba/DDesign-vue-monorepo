@@ -34,6 +34,7 @@
   import { ref, h } from 'vue'
   import { DButton, DPopover, DTooltip, DPopoconfirm } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
+
   const message = useMessage()
   const showMessage = () => {
     message.success(h('span', {}, 'message success'))
@@ -47,10 +48,10 @@
   const showRef = ref(false)
 
   const confirm = () => {
-    console.log('confirm')
+    message.success('删除成功')
   }
   const cancel = () => {
-    console.log('cancel')
+    message.warning('用户取消删除')
   }
 </script>
 <style scoped>
