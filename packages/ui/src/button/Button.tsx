@@ -1,27 +1,10 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
+import { buttonProps } from './buttonTypes'
 import './style'
 
 export default defineComponent({
   name: 'DButton',
-  props: {
-    type: {
-      type: String as PropType<'primary' | 'default' | 'danger'>,
-      default: 'default',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    size: {
-      type: String as PropType<'small' | 'middle' | 'large'>,
-      default: 'middle',
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  props: buttonProps,
   setup(props, { slots }) {
     const classes = computed(() => {
       return [
