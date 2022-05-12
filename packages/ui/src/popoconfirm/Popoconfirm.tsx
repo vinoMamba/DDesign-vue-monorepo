@@ -1,5 +1,6 @@
-import { defineComponent } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 import { DPopover, DButton } from '../../'
+import './style'
 
 export default defineComponent({
   name: 'DPopocomfirm',
@@ -18,18 +19,24 @@ export default defineComponent({
       type: String,
       default: '取消',
     },
+    okType: {
+      type: String as PropType<'primary' | 'danger'>,
+      default: 'primary',
+    },
   },
   emits: ['confirm', 'cancel'],
   setup(props, { slots }) {
     return () => (
       <DPopover>
         {{
-          title: () => props.title,
+          title: () => <p class="dtd-popoconfirm-title">{props.title}</p>,
           content: () => (
-            <div>
-              <span>{props.content}</span>
-              <DButton>{props.cancelText}</DButton>
-              <DButton>{props.okText}</DButton>
+            <div class="dtd-popoconfirm-content-wrapper">
+              <p class="dtd-popoconfirm-content">{props.content}</p>
+              <div class="dtd-popoconfirm-content-button-wrapper">
+                <DButton>{props.cancelText}</DButton>
+                <DButton type={props.okType}>{props.okText}</DButton>
+              </div>
             </div>
           ),
           default: () => <div>{slots.default?.()}</div>,

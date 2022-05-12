@@ -18,8 +18,9 @@
     </DTooltip>
     <DPopoconfirm
       title="删除此文档吗？"
-      content="你可以再回收站中找到删除的文档"
+      content="你可以再回收站中找到删除的文档  你可以再回收站中找到删除的文档"
       ok-text="删除"
+      ok-type="danger"
       cancel-text="取消"
       @confirm="confirm"
       @cancel="cancel"
