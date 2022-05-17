@@ -27,12 +27,22 @@
     >
       <DButton>test Popoconfirm</DButton>
     </DPopoconfirm>
+    <DButton @click="toggleModalVisible">modal</DButton>
+    <DModal v-model:visible="modalVisible" @ok="handleOk">
+      <template #title>title</template>
+      <template #content>
+        <div class="wrapper">
+          <div>1</div>
+          <div>2</div>
+        </div>
+      </template>
+    </DModal>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref, h } from 'vue'
-  import { DButton, DPopover, DTooltip, DPopoconfirm } from '../src'
+  import { DButton, DPopover, DTooltip, DPopoconfirm, DModal } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
 
   const message = useMessage()
@@ -52,6 +62,13 @@
   }
   const cancel = () => {
     message.warning('用户取消删除')
+  }
+  const modalVisible = ref(false)
+  const toggleModalVisible = () => {
+    modalVisible.value = !modalVisible.value
+  }
+  const handleOk = (e: MouseEvent) => {
+    console.log(e)
   }
 </script>
 <style scoped>
