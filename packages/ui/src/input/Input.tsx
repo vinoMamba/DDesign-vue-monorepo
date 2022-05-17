@@ -1,5 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import './style'
+import { CloseCircle } from '@vicons/ionicons5'
 
 export default defineComponent({
   name: 'DInput',
@@ -19,6 +20,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    allowClear: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['change', 'input', 'blur', 'focus', 'update:value'],
   setup(props, { emit, slots }) {
@@ -26,12 +31,19 @@ export default defineComponent({
       emit('update:value', (e.target as HTMLInputElement).value)
       emit('input', (e.target as HTMLInputElement).value)
     }
+    function clearValue() {
+      emit('update:value', '')
+    }
     const inputClassRef = computed(() => {
       return {
         'dtd-input': true,
         'dtd-input-prefix-wrapper': slots.prefix ? true : false,
         'dtd-input-suffix-wrapper': slots.suffix ? true : false,
+        'dtd-input-close-wrapper': props.allowClear ? true : false,
       }
+    })
+    const closeIconRef = computed(() => {
+      return props.value ? true : false
     })
     return () => (
       <span class="dtd-input-wrapper">
@@ -52,6 +64,17 @@ export default defineComponent({
           onFocus={(e) => emit('focus', (e.target as HTMLInputElement).value)}
           onBlur={(e) => emit('blur', (e.target as HTMLInputElement).value)}
         />
+        {props.allowClear ? (
+          <span class="dtd-input-close">
+            {closeIconRef.value ? (
+              <span class="dtd-input-close-inner">
+                <CloseCircle onClick={() => clearValue()} />
+              </span>
+            ) : (
+              ''
+            )}
+          </span>
+        ) : null}
         {slots.suffix ? (
           <span class="dtd-input-suffix">
             <span class="dtd-input-suffix-inner">{slots.suffix()}</span>
