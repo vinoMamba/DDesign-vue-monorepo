@@ -1,0 +1,33 @@
+.dtd-input {
+  box-sizing: border-box;
+  margin: 0;
+  color: var(--common_level1_base_color, #171a1d);
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: "tnum", "tnum";
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #fff;
+  background-color: var(--common_fg_z1_color, #fff);
+  background-image: none;
+  border: 1px solid rgba(126, 134, 142, .16);
+  border: 1px solid var(--common_line_light_color, rgba(126, 134, 142, .16));
+  border-radius: 4px;
+  transition: all .3s;
+
+  &:hover {
+    border-color: var(--theme_primary2_color, rgba(0, 137, 255, .48));
+    border-right-width: 1px !important;
+  }
+
+  &:focus {
+    border-color: var(--theme_primary1_color, #0089ff);
+    box-shadow: none;
+    outline: none;
+  }
+}

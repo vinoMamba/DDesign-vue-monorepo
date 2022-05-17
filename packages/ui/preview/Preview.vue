@@ -37,14 +37,16 @@
         </div>
       </template>
     </DModal>
+    <DInput v-model:value="inputValue" placeholder="Basic usage" />
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref, h } from 'vue'
-  import { DButton, DPopover, DTooltip, DPopoconfirm, DModal } from '../src'
+  import { DButton, DPopover, DTooltip, DPopoconfirm, DModal, DInput } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
 
+  const inputValue = ref('')
   const message = useMessage()
   const showMessage = () => {
     message.success(h('span', {}, 'message success'))
