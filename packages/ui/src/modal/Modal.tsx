@@ -30,6 +30,10 @@ export default defineComponent({
       type: String,
       default: '取消',
     },
+    dense: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit, slots }) {
     const classesRef = computed(() => {
@@ -65,7 +69,7 @@ export default defineComponent({
                   )}
                 </header>
               )}
-              <main>{slots.content?.()}</main>
+              <main class={props.dense ? 'dtd-modal-dense' : ''}>{slots.content?.()}</main>
               <footer>
                 {slots.footer ? (
                   slots.footer?.()
