@@ -1,10 +1,28 @@
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, type PropType } from 'vue'
 import './style'
 import { CloseCircle } from '@vicons/ionicons5'
 
 export default defineComponent({
   name: 'DInput',
   props: {
+    type: {
+      type: String as PropType<
+        | 'text'
+        | 'password'
+        | 'email'
+        | 'number'
+        | 'tel'
+        | 'url'
+        | 'search'
+        | 'date'
+        | 'time'
+        | 'datetime-local'
+        | 'month'
+        | 'week'
+        | 'color'
+      >,
+      default: 'text',
+    },
     placeholder: {
       type: String,
     },
@@ -54,7 +72,7 @@ export default defineComponent({
         ) : null}
         <input
           class={inputClassRef.value}
-          type="text"
+          type={props.type}
           placeholder={props.placeholder}
           disabled={props.disabled}
           readonly={props.readonly}
