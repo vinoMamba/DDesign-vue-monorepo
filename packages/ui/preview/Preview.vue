@@ -37,8 +37,17 @@
         </div>
       </template>
     </DModal>
-    {{ inputValue }}
-    <DInput v-model:value="inputValue" placeholder="Basic usage" />
+    <div style="padding: 8px">
+      {{ inputValue }}
+      <DInput v-model:value="inputValue" placeholder="Basic usage">
+        <template #prefix>
+          <span>prefix</span>
+        </template>
+        <template #suffix>
+          <span>suffix</span>
+        </template>
+      </DInput>
+    </div>
   </main>
 </template>
 
