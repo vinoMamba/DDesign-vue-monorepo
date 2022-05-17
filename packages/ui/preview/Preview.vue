@@ -37,6 +37,7 @@
         </div>
       </template>
     </DModal>
+    {{ inputValue }}
     <DInput v-model:value="inputValue" placeholder="Basic usage" />
   </main>
 </template>

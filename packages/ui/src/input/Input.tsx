@@ -20,7 +20,12 @@ export default defineComponent({
       default: '',
     },
   },
+  emits: ['change', 'input', 'blur', 'focus', 'update:value'],
   setup(props, { emit }) {
+    function onInputHandle(e: Event) {
+      emit('update:value', (e.target as HTMLInputElement).value)
+      emit('input', (e.target as HTMLInputElement).value)
+    }
     return () => (
       <input
         class="dtd-input"
@@ -29,10 +34,10 @@ export default defineComponent({
         disabled={props.disabled}
         readonly={props.readonly}
         value={props.value}
+        onInput={(e) => onInputHandle(e)}
         onChange={(e) => emit('change', (e.target as HTMLInputElement).value)}
-        onInput={(e) => emit('input', (e.target as HTMLInputElement).value)}
-        onBlur={(e) => emit('blur', e)}
-        onFocus={(e) => emit('focus', e)}
+        onFocus={(e) => emit('focus', (e.target as HTMLInputElement).value)}
+        onBlur={(e) => emit('blur', (e.target as HTMLInputElement).value)}
       />
     )
   },
