@@ -45,12 +45,16 @@
         </template>
       </DInput>
     </div>
+    <div style="padding: 8px">
+      {{ inputValue }}
+      <DInputPassword />
+    </div>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref, h } from 'vue'
-  import { DButton, DPopover, DTooltip, DPopoconfirm, DModal, DInput } from '../src'
+  import { DButton, DPopover, DTooltip, DPopoconfirm, DModal, DInput, DInputPassword } from '../src'
   import { useMessage } from '../src/message/messagePlugin'
 
   const inputValue = ref('')
