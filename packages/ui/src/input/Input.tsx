@@ -35,7 +35,7 @@ export default defineComponent({
     })
     return () => (
       <span class="dtd-input-wrapper">
-        <span class="dtd-input-prefix">{slots.prefix?.()}</span>
+        {slots.prefix ? <span class="dtd-input-prefix">{slots.prefix()}</span> : null}
         <input
           class={inputClassRef.value}
           type="text"
@@ -48,7 +48,7 @@ export default defineComponent({
           onFocus={(e) => emit('focus', (e.target as HTMLInputElement).value)}
           onBlur={(e) => emit('blur', (e.target as HTMLInputElement).value)}
         />
-        <span class="dtd-input-suffix">{slots.suffix?.()}</span>
+        {slots.suffix ? <span class="dtd-input-suffix">{slots.suffix()}</span> : null}
       </span>
     )
   },
