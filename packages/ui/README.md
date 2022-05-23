@@ -11,7 +11,7 @@
 
 #### 通用组件
 
-1. Button  
+1. [x] Button
 2. Input
 3. InputPassword
 4. Switch 
