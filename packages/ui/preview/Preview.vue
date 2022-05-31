@@ -1,6 +1,6 @@
 <template>
   <main>
-    <DUserTree v-model:visible="visibleRef" :tree-data="treeData" />
+    <DUserTree v-model:visible="visibleRef" :tree-data="treeData" show-user-count mode="andUser" />
     <DButton @click="toggle">按钮</DButton>
   </main>
 </template>

@@ -1,7 +1,6 @@
 import { defineComponent, type InjectionKey, onMounted, type PropType, provide } from 'vue'
 import { DModal, DButton } from '../components'
 import { UserTreeContent } from './UserTreeContent'
-import { UserTreeTitle } from './UserTreeTitle'
 import type { TreeNode } from './type'
 import './style'
 
@@ -56,16 +55,15 @@ export default defineComponent({
     onMounted(() => {})
     return () => (
       <>
-        <DModal v-model:visible={props.visible} closable={false}>
+        <DModal v-model:visible={props.visible} hideHeader>
           {{
-            title: () => <UserTreeTitle />,
             content: () => <UserTreeContent />,
             footer: () => (
               <div class="dtd-user-tree-footer">
+                <DButton onClick={() => handleClose()}>取消</DButton>
                 <DButton type="primary" onClick={() => handleClose()}>
                   确认
                 </DButton>
-                <DButton onClick={() => handleClose()}>取消</DButton>
               </div>
             ),
           }}

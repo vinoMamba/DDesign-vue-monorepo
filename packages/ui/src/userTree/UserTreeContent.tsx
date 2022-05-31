@@ -30,12 +30,10 @@ export const UserTreeContent = defineComponent({
           />
         </div>
         <div class="dtd-user-tree-content-right">
-          <div class="dtd-user-tree-content">
-            <UserTreeOperationList
-              checkedNodes={checkedNodes.value}
-              onDelete={(node) => createUniqueNode(node)}
-            />
-          </div>
+          <UserTreeOperationList
+            checkedNodes={checkedNodes.value}
+            onDelete={(node) => createUniqueNode(node)}
+          />
         </div>
       </div>
     )

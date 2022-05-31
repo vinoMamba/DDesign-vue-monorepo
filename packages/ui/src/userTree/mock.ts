@@ -6,7 +6,7 @@ export const mockTree: TreeNode[] = [
     name: '安徽网钉企业服务中心',
     type: 0,
     peopleCount: 0,
-    avatar: 'xx',
+    avatar: null,
     checked: false,
     children: [
       {
@@ -14,7 +14,7 @@ export const mockTree: TreeNode[] = [
         name: '董事长办公室',
         type: 0,
         peopleCount: 0,
-        avatar: 'xx',
+        avatar: null,
         checked: false,
         children: [
           {
@@ -22,7 +22,7 @@ export const mockTree: TreeNode[] = [
             name: '测试部',
             type: 0,
             peopleCount: 0,
-            avatar: 'xx',
+            avatar: null,
             checked: false,
             children: [
               {
@@ -30,7 +30,7 @@ export const mockTree: TreeNode[] = [
                 name: '王笑笑',
                 type: 1,
                 peopleCount: 0,
-                avatar: 'xx',
+                avatar: null,
                 children: [],
                 checked: false,
               },
@@ -39,7 +39,7 @@ export const mockTree: TreeNode[] = [
                 name: '王哭哭',
                 type: 1,
                 peopleCount: 0,
-                avatar: 'xx',
+                avatar: null,
                 checked: false,
                 children: [],
               },
@@ -50,7 +50,7 @@ export const mockTree: TreeNode[] = [
             name: '开发部',
             type: 0,
             peopleCount: 0,
-            avatar: 'xx',
+            avatar: null,
             checked: false,
             children: [],
           },
@@ -61,7 +61,7 @@ export const mockTree: TreeNode[] = [
         name: '总经理办公室',
         type: 0,
         peopleCount: 0,
-        avatar: 'xx',
+        avatar: null,
         checked: false,
         children: [
           {
@@ -69,7 +69,7 @@ export const mockTree: TreeNode[] = [
             name: 'grandchild1',
             type: 0,
             peopleCount: 0,
-            avatar: 'xx',
+            avatar: null,
             checked: false,
             children: [],
           },
@@ -78,7 +78,7 @@ export const mockTree: TreeNode[] = [
             name: 'grandchild2',
             type: 0,
             peopleCount: 0,
-            avatar: 'xx',
+            avatar: null,
             checked: false,
             children: [],
           },
@@ -89,7 +89,7 @@ export const mockTree: TreeNode[] = [
         name: '王鑫',
         type: 1,
         peopleCount: 0,
-        avatar: 'xx',
+        avatar: null,
         checked: false,
         children: [],
       },
@@ -98,7 +98,7 @@ export const mockTree: TreeNode[] = [
         name: '宋江',
         type: 1,
         peopleCount: 0,
-        avatar: 'xx',
+        avatar: null,
         checked: false,
         children: [],
       },

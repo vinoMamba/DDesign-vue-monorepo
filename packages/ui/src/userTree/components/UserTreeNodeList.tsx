@@ -3,6 +3,7 @@ import type { TreeNode } from '../type'
 import './style/userTreeNodeList.less'
 import { type UserTreeInjection, userTreeInjection } from '../UserTree'
 import { getCheckedNodes, traverseNodeList, traverseTree, traverseTreeByType } from '../utils'
+import { ChevronForward } from '@vicons/ionicons5'
 
 // 由于vue3 里面的watch 是懒监听，必须加一个symbol值保证唯一
 export interface UniqueTreeNode extends TreeNode {
@@ -129,27 +130,29 @@ export const UserTreeNodeList = defineComponent({
       updateNodeList(props.list, { mode: UserTree.mode() })
     })
     return () => (
-      <div>
-        <ol class="dtd-user-tree-breadcrumb">
+      <div class="dtd-user-tree-node-list-layout">
+        <ol class="dtd-user-tree-node-list-breadcrumb">
           <li onClick={() => reset()}>
-            <span class="dtd-user-tree-breadcrumb-title">通讯录</span>
-            <span class="dtd-user-tree-breadcrumb-separator">&gt;</span>
+            <span class="dtd-user-tree-node-list-breadcrumb-title">通讯录</span>
+            {breadcrumbList.value.length > 0 && (
+              <ChevronForward class="dtd-user-tree-node-list-breadcrumb-separator" />
+            )}
           </li>
           {breadcrumbList.value.map((node, index) => (
             <li title={node.name} key={node.id} onClick={() => getPrev(node)}>
-              <span class="dtd-user-tree-breadcrumb-title">{node.name}</span>
+              <span class="dtd-user-tree-node-list-breadcrumb-title">{node.name}</span>
               {index < breadcrumbList.value.length - 1 && (
-                <span class="dtd-user-tree-breadcrumb-separator">&gt;</span>
+                <ChevronForward class="dtd-user-tree-node-list-breadcrumb-separator" />
               )}
             </li>
           ))}
         </ol>
-        <ul class="dtd-user-tree-list">
+        <ul class="dtd-user-tree-node-list">
           {UserTree.showAllCheckedButton() && UserTree.multiple() ? (
-            <li class="dtd-user-tree-checkedAll">
+            <li class="dtd-user-tree-node-list-checkedAll">
               <input
                 type="checkbox"
-                class="dtd-user-tree-checkbox"
+                class="dtd-user-tree-node-list-checkbox"
                 checked={checkedAll.value}
                 onChange={() => toggleCheckedAll()}
               />
@@ -157,13 +160,13 @@ export const UserTreeNodeList = defineComponent({
             </li>
           ) : null}
           {nodeList.value.length === 0 ? (
-            <li class="dtd-user-tree-empty">暂无数据</li>
+            <li class="dtd-user-tree-node-list-empty">暂无数据</li>
           ) : (
             nodeList.value.map((node) => (
               <li key={node.id}>
                 <input
                   type="checkbox"
-                  class="dtd-user-tree-checkbox"
+                  class="dtd-user-tree-node-list-checkbox"
                   checked={node.checked}
                   onChange={(e: Event) => toggleChecked(e, node)}
                 />
@@ -175,8 +178,9 @@ export const UserTreeNodeList = defineComponent({
                   ) : null}
                 </p>
                 {node.type === 0 && (
-                  <span class="dtd-user-tree-node-count-next" onClick={() => getNext(node)}>
+                  <span class="dtd-user-tree-node-next" onClick={() => getNext(node)}>
                     下级
+                    <ChevronForward class="dtd-user-tree-node-next-icon" />
                   </span>
                 )}
               </li>
