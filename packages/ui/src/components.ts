@@ -1,5 +1,5 @@
 export { default as DButton } from './button'
-export { default as DDingTree } from './dingTree'
+export { default as DUserTree } from './userTree'
 export { default as DPopover } from './popover'
 export { default as DMessage, useMessage, messagePlugin } from './message'
 export { default as DTooltip } from './tooltip'

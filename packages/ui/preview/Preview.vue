@@ -1,17 +1,20 @@
 <template>
   <main>
-    <DDingTree v-model:visible="visibleRef" />
+    <DUserTree v-model:visible="visibleRef" :tree-data="treeData" />
     <DButton @click="toggle">按钮</DButton>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { DDingTree, DButton } from '../src'
+  import { DUserTree, DButton } from '../src'
+  import { mockTree } from '../src/userTree/mock'
+  import { TreeNode } from '../src/userTree/type'
   const visibleRef = ref(false)
   function toggle() {
     visibleRef.value = !visibleRef.value
   }
+  const treeData = ref<TreeNode[]>(mockTree)
 </script>
 <style scoped>
   main {

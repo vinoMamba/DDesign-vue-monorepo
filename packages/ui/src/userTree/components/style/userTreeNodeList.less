@@ -1,0 +1,81 @@
+.dtd-user-tree {
+  &-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+
+    >li {
+      display: flex;
+      align-items: center;
+
+      &:last-child .title {
+        color: var(--common-black1);
+      }
+    }
+
+    &-title {
+      color: var(--common-blue1);
+      padding: var(--p-unit);
+      border-radius: var(--common-border-raidus-s);
+      max-width: 6rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.breadcrumb .title:hover {
+  background: var(--common-gray5);
+}
+
+.breadcrumb .separator {
+  margin: 0 0.5rem;
+}
+
+.list>li {
+  cursor: pointer;
+  padding: var(--p-unit);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list>li:hover {
+  background: var(--common-gray5);
+}
+
+.list>li.checkedAll {
+  display: block;
+}
+
+.list>li.checkedAll:hover {
+  background: inherit;
+}
+
+.list>li .checkbox {
+  margin-right: 0.4rem;
+}
+
+.list>li .node {
+  flex-grow: 1;
+  margin-right: auto;
+  display: flex;
+  align-content: center;
+}
+
+.list>li .next {
+  padding: 0 var(--p-unit);
+  color: var(--common-blue1);
+}
+
+.list>li.empty {
+  padding: var(--p-xxl);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.list>li.empty:hover {
+  background: transparent;
+}
