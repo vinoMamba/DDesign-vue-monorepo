@@ -171,7 +171,7 @@ export const UserTreeNodeList = defineComponent({
                   onChange={(e: Event) => toggleChecked(e, node)}
                 />
                 <p class="dtd-user-tree-node" onClick={() => getNext(node)}>
-                  <img src={node.avatar} alt="" />
+                  <img src={node.avatar!} alt="" />
                   <span class="dtd-user-tree-node-name">{node.name}</span>
                   {node.type === 0 && userCountVisible.value ? (
                     <span class="dtd-user-tree-node-count">（{node.peopleCount}）</span>

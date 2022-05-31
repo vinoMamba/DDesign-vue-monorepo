@@ -1,16 +1,21 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref, type PropType } from 'vue'
 import { DInput } from '../components'
 import { UserTreeNodeList, type UniqueTreeNode } from './components/UserTreeNodeList'
 import type { TreeNode } from './type'
-import { mockTree } from './mock'
 import { UserTreeOperationList } from './components/UserTreeOperationList'
 import './style'
 
 export const UserTreeContent = defineComponent({
   name: 'UserTreeContent',
-  setup() {
+  props: {
+    treeData: {
+      type: Array as PropType<TreeNode[]>,
+      required: true,
+    },
+  },
+  setup(props) {
     const searchContent = ref('')
-    const listRef = ref<TreeNode[]>(mockTree)
+    const listRef = ref<TreeNode[]>([])
     const checkedNodes = ref<TreeNode[]>([])
     const deleteNode = ref<UniqueTreeNode>()
     function createUniqueNode(node: TreeNode) {
@@ -19,6 +24,9 @@ export const UserTreeContent = defineComponent({
         uniqueId: Symbol(),
       }
     }
+    onMounted(() => {
+      listRef.value = props.treeData
+    })
     return () => (
       <div class="dtd-user-tree-content-layout">
         <div class="dtd-user-tree-content-left">

@@ -57,7 +57,7 @@ export default defineComponent({
       <>
         <DModal v-model:visible={props.visible} hideHeader>
           {{
-            content: () => <UserTreeContent />,
+            content: () => <UserTreeContent treeData={props.treeData} />,
             footer: () => (
               <div class="dtd-user-tree-footer">
                 <DButton onClick={() => handleClose()}>取消</DButton>
