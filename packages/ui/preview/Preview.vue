@@ -1,15 +1,16 @@
 <template>
   <main>
+    <DInput @focus="toggle" />
     <DUserTree v-model:visible="visibleRef" :tree-data="treeData" show-user-count mode="andUser" />
-    <DButton @click="toggle">按钮</DButton>
   </main>
 </template>
 
 <script lang="ts" setup>
   import { ref } from 'vue'
-  import { DUserTree, DButton } from '../src'
+  import { DUserTree, DInput } from '../src'
   import { mockTree } from '../src/userTree/mock'
   import { TreeNode } from '../src/userTree/type'
+
   const visibleRef = ref(false)
   function toggle() {
     visibleRef.value = !visibleRef.value
