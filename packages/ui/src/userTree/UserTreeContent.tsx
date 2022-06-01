@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, type PropType } from 'vue'
+import { defineComponent, onMounted, ref, watch, type PropType } from 'vue'
 import { DInput } from '../components'
 import { UserTreeNodeList, type UniqueTreeNode } from './components/UserTreeNodeList'
 import type { TreeNode } from './type'
@@ -13,7 +13,8 @@ export const UserTreeContent = defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  emits: ['checked'],
+  setup(props, { emit }) {
     const searchContent = ref('')
     const listRef = ref<TreeNode[]>([])
     const checkedNodes = ref<TreeNode[]>([])
@@ -26,6 +27,9 @@ export const UserTreeContent = defineComponent({
     }
     onMounted(() => {
       listRef.value = props.treeData
+    })
+    watch(checkedNodes, (newValue) => {
+      emit('checked', newValue)
     })
     return () => (
       <div class="dtd-user-tree-content-layout">

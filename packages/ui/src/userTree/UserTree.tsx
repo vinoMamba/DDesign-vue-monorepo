@@ -1,4 +1,4 @@
-import { defineComponent, type InjectionKey, onMounted, type PropType, provide } from 'vue'
+import { defineComponent, type InjectionKey, type PropType, provide, ref } from 'vue'
 import { DModal, DButton } from '../components'
 import { UserTreeContent } from './UserTreeContent'
 import type { TreeNode } from './type'
@@ -41,7 +41,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:visible'],
+  emits: ['update:visible', 'update:checked'],
   setup(props, { emit }) {
     provide(userTreeInjection, {
       multiple: () => props.multiple,
@@ -49,15 +49,21 @@ export default defineComponent({
       showUserCount: () => props.showUserCount,
       showAllCheckedButton: () => props.showAllCheckedButton,
     })
+    const checked = ref<TreeNode[]>([])
     const handleClose = () => {
       emit('update:visible', false)
+      emit('update:checked', checked.value)
     }
-    onMounted(() => {})
+    function onChecked(e: TreeNode[]) {
+      checked.value = e
+    }
     return () => (
       <>
         <DModal v-model:visible={props.visible} hideHeader>
           {{
-            content: () => <UserTreeContent treeData={props.treeData} />,
+            content: () => (
+              <UserTreeContent treeData={props.treeData} onChecked={(e) => onChecked(e)} />
+            ),
             footer: () => (
               <div class="dtd-user-tree-footer">
                 <DButton onClick={() => handleClose()}>取消</DButton>
