@@ -1,6 +1,6 @@
 {
-  "name": "@vino/dt-design",
-  "version": "0.0.1",
+  "name": "hjxz-dt-design",
+  "version": "0.0.5",
   "description": "",
   "keywords": [],
   "license": "MIT",
@@ -36,6 +36,6 @@
   "dependencies": {
     "@vicons/ionicons5": "^0.12.0",
     "less": "^4.1.2",
-    "vue": "^3.2.33"
+    "vue": "3.2.21"
   }
 }
