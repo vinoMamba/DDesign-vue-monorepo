@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.25",
-    "@vino/dt-design": "workspace:^"
+    "@vino/dt-design": "workspace:^",
+    "vue": "3.2.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
