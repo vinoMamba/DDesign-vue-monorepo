@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, watch, type PropType } from 'vue'
+import { defineComponent, onMounted, ref, watch, watchEffect, type PropType } from 'vue'
 import { DInput } from '../components'
 import { UserTreeNodeList, type UniqueTreeNode } from './components/UserTreeNodeList'
 import type { TreeNode } from './type'
@@ -26,6 +26,9 @@ export const UserTreeContent = defineComponent({
       }
     }
     onMounted(() => {
+      listRef.value = props.treeData
+    })
+    watchEffect(() => {
       listRef.value = props.treeData
     })
     watch(checkedNodes, (newValue) => {

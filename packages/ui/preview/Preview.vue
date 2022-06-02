@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { DUserTree, DInput } from '../src'
   import { mockTree } from '../src/userTree/mock'
   import { TreeNode } from '../src/userTree/type'
@@ -23,7 +23,10 @@
   function toggle() {
     visibleRef.value = !visibleRef.value
   }
-  const treeData = ref<TreeNode[]>(mockTree)
+  const treeData = ref<TreeNode[]>([])
+  onMounted(() => {
+    treeData.value = mockTree
+  })
 </script>
 <style scoped>
   main {
