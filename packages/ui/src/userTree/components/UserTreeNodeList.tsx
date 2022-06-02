@@ -4,6 +4,8 @@ import './style/userTreeNodeList.less'
 import { type UserTreeInjection, userTreeInjection } from '../UserTree'
 import { getCheckedNodes, traverseNodeList, traverseTree, traverseTreeByType } from '../utils'
 import { ChevronForward } from '@vicons/ionicons5'
+//@ts-ignore
+import imgUrl from '../images/dep.png'
 
 // 由于vue3 里面的watch 是懒监听，必须加一个symbol值保证唯一
 export interface UniqueTreeNode extends TreeNode {
@@ -111,7 +113,9 @@ export const UserTreeNodeList = defineComponent({
       }
       updateCheckedNodes()
     }
-
+    const departmentDisabled = (node: TreeNode) => {
+      return UserTree.mode() === 'andUser' && node.type === 0
+    }
     //watch deleteNode and changed checked state
     watch(
       () => props.deleteNode,
@@ -129,6 +133,9 @@ export const UserTreeNodeList = defineComponent({
     onMounted(() => {
       updateNodeList(props.list, { mode: UserTree.mode() })
     })
+    function createName(node: TreeNode) {
+      return node.name.slice(0, 2)
+    }
     return () => (
       <div class="dtd-user-tree-node-list-layout">
         <ol class="dtd-user-tree-node-list-breadcrumb">
@@ -168,13 +175,20 @@ export const UserTreeNodeList = defineComponent({
                   type="checkbox"
                   class="dtd-user-tree-node-list-checkbox"
                   checked={node.checked}
+                  disabled={departmentDisabled(node)}
                   onChange={(e: Event) => toggleChecked(e, node)}
                 />
-                <p class="dtd-user-tree-node" onClick={() => getNext(node)}>
-                  <img src={node.avatar!} alt="" />
+                <p class="dtd-user-tree-node">
+                  {node.type === 0 ? (
+                    <img src={imgUrl} alt="" class="dtd-user-tree-node-list-item-img" />
+                  ) : node.avatar ? (
+                    <img src={node.avatar} alt="" class="dtd-user-tree-node-list-item-img" />
+                  ) : (
+                    <span class="dtd-user-tree-node-list-item-name">{() => createName(node)}</span>
+                  )}
                   <span class="dtd-user-tree-node-name">{node.name}</span>
                   {node.type === 0 && userCountVisible.value ? (
-                    <span class="dtd-user-tree-node-count">（{node.peopleCount}）</span>
+                    <span class="dtd-user-tree-node-count">（{node.peopleCount || 0}）</span>
                   ) : null}
                 </p>
                 {node.type === 0 && (

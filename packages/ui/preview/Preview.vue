@@ -5,6 +5,7 @@
       v-model:visible="visibleRef"
       :tree-data="treeData"
       show-user-count
+      showAllCheckedButton
       mode="andUser"
       :multiple="false"
       v-model:checked="checked"

@@ -1,4 +1,4 @@
-import { defineComponent, type InjectionKey, type PropType, provide, ref } from 'vue'
+import { defineComponent, type InjectionKey, type PropType, provide, ref, watch } from 'vue'
 import { DModal, DButton } from '../components'
 import { UserTreeContent } from './UserTreeContent'
 import type { TreeNode } from './type'
@@ -41,7 +41,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:visible', 'update:checked'],
+  emits: ['update:visible', 'update:checked', 'update:search'],
   setup(props, { emit }) {
     provide(userTreeInjection, {
       multiple: () => props.multiple,
@@ -49,6 +49,7 @@ export default defineComponent({
       showUserCount: () => props.showUserCount,
       showAllCheckedButton: () => props.showAllCheckedButton,
     })
+    const search = ref('')
     const checked = ref<TreeNode[]>([])
     const handleClose = () => {
       emit('update:visible', false)
@@ -57,12 +58,22 @@ export default defineComponent({
     function onChecked(e: TreeNode[]) {
       checked.value = e
     }
+    watch(search, () => {
+      emit('update:search', search.value)
+    })
+    function onSearch(e: string) {
+      search.value = e
+    }
     return () => (
       <>
         <DModal v-model:visible={props.visible} hideHeader>
           {{
             content: () => (
-              <UserTreeContent treeData={props.treeData} onChecked={(e) => onChecked(e)} />
+              <UserTreeContent
+                treeData={props.treeData}
+                onSearch={(e) => onSearch(e)}
+                onChecked={(e) => onChecked(e)}
+              />
             ),
             footer: () => (
               <div class="dtd-user-tree-footer">

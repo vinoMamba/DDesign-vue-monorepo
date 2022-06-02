@@ -13,7 +13,7 @@ export const UserTreeContent = defineComponent({
       required: true,
     },
   },
-  emits: ['checked'],
+  emits: ['checked', 'search'],
   setup(props, { emit }) {
     const searchContent = ref('')
     const listRef = ref<TreeNode[]>([])
@@ -33,6 +33,9 @@ export const UserTreeContent = defineComponent({
     })
     watch(checkedNodes, (newValue) => {
       emit('checked', newValue)
+    })
+    watch(searchContent, (value) => {
+      emit('search', value)
     })
     return () => (
       <div class="dtd-user-tree-content-layout">
