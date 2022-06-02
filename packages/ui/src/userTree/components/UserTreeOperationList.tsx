@@ -33,7 +33,7 @@ export const UserTreeOperationList = defineComponent({
                   {node.avatar ? (
                     <img src={node.avatar} alt="" class="dtd-user-tree-operation-item-img" />
                   ) : (
-                    <span class="dtd-user-tree-operation-item-img">{() => createName(node)}</span>
+                    <span class="dtd-user-tree-operation-item-name">{() => createName(node)}</span>
                   )}
                   <span>{node.name}</span>
                   <CloseCircle onClick={() => deleteNode(node)} />
