@@ -1,5 +1,7 @@
 .dtd-user-tree {
   &-node-list {
+    max-height: 50vh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
 
@@ -50,10 +52,6 @@
       }
     }
 
-    &-checkedAll {}
-
-    &-checkbox {}
-
     &-empty {
       min-height: 100px;
       display: flex;
@@ -77,8 +75,6 @@
     &-name {
       color: var(--common_level1_base_color, #171a1d);
     }
-
-    &-count {}
 
     &-next {
       display: flex;
