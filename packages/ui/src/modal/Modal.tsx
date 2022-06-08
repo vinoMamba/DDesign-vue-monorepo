@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 import './style'
 import { DButton } from '../components'
 import { CloseOutline } from '@vicons/ionicons5'
@@ -34,6 +34,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    destroyOnClose: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, { emit, slots }) {
     const wrapperRef = ref<HTMLDivElement | null>(null)
@@ -54,13 +58,13 @@ export default defineComponent({
     function cancel() {
       emit('update:visible', false)
     }
-    // watch(props, (value: any) => {
-    //   if (value.visible) {
-    //     document.body.appendChild(wrapperRef.value!)
-    //   } else {
-    //     document.body.removeChild(wrapperRef.value!)
-    //   }
-    // })
+    watch(props, (value: any) => {
+      if (value.visible) {
+        document.body.appendChild(wrapperRef.value!)
+      } else {
+        document.body.removeChild(wrapperRef.value!)
+      }
+    })
     return () => (
       <>
         <div class={classesRef.value} ref={wrapperRef}>

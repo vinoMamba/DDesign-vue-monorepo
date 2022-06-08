@@ -1,6 +1,6 @@
 <template>
   <main>
-    <DInput @focus="toggle" v-model:value="inputValue" />
+    <DInput @focus="toggle" v-model:value="inputValue" />{{ inputValue }}
     <DUserTree
       v-model:visible="visibleRef"
       :tree-data="treeData"
