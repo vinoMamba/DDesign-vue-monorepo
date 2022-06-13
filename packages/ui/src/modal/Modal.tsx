@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref, watch } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import './style'
 import { DButton } from '../components'
 import { CloseOutline } from '@vicons/ionicons5'
@@ -58,45 +58,40 @@ export default defineComponent({
     function cancel() {
       emit('update:visible', false)
     }
-    watch(props, (value: any) => {
-      if (value.visible) {
-        document.body.appendChild(wrapperRef.value!)
-      } else {
-        document.body.removeChild(wrapperRef.value!)
-      }
-    })
     return () => (
       <>
-        <div class={classesRef.value} ref={wrapperRef}>
-          <div class="dtd-modal-overlay" />
-          <div class={wrapperClassesRef.value}>
-            <div class="dtd-modal">
-              {!props.hideHeader && (
-                <header>
-                  <div class="dtd-modal-title">{slots.title?.()}</div>
-                  {props.closable && (
-                    <i class="dtd-modal-close" onClick={() => close()}>
-                      <CloseOutline />
-                    </i>
-                  )}
-                </header>
-              )}
-              <main class={props.dense ? 'dtd-modal-dense' : ''}>{slots.content?.()}</main>
-              <footer>
-                {slots.footer ? (
-                  slots.footer?.()
-                ) : (
-                  <div class="dtd-modal-button-wrapper">
-                    <DButton onClick={() => cancel()}>{props.cancelText}</DButton>
-                    <DButton type="primary" onClick={(e: MouseEvent) => ok(e)}>
-                      {props.okText}
-                    </DButton>
-                  </div>
+        {props.visible ? (
+          <div class={classesRef.value} ref={wrapperRef}>
+            <div class="dtd-modal-overlay" />
+            <div class={wrapperClassesRef.value}>
+              <div class="dtd-modal">
+                {!props.hideHeader && (
+                  <header>
+                    <div class="dtd-modal-title">{slots.title?.()}</div>
+                    {props.closable && (
+                      <i class="dtd-modal-close" onClick={() => close()}>
+                        <CloseOutline />
+                      </i>
+                    )}
+                  </header>
                 )}
-              </footer>
+                <main class={props.dense ? 'dtd-modal-dense' : ''}>{slots.content?.()}</main>
+                <footer>
+                  {slots.footer ? (
+                    slots.footer?.()
+                  ) : (
+                    <div class="dtd-modal-button-wrapper">
+                      <DButton onClick={() => cancel()}>{props.cancelText}</DButton>
+                      <DButton type="primary" onClick={(e: MouseEvent) => ok(e)}>
+                        {props.okText}
+                      </DButton>
+                    </div>
+                  )}
+                </footer>
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </>
     )
   },

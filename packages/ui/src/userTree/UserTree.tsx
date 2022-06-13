@@ -75,6 +75,7 @@ export default defineComponent({
           {{
             content: () => (
               <UserTreeContent
+                checked={props.checked}
                 treeData={props.treeData}
                 onSearch={(e) => onSearch(e)}
                 onChecked={(e) => onChecked(e)}
