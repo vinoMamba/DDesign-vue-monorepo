@@ -87,15 +87,18 @@ export const UserTreeNodeList = defineComponent({
         // change parent checked state
         updateParentCheckedState()
       } else {
-        setBrotherNodeCheckedState()
+        setBrotherNodeCheckedState(node)
         node.checked = !node.checked
       }
       updateCheckedNodes()
     }
 
-    function setBrotherNodeCheckedState() {
-      const lastNode = breadcrumbList.value[breadcrumbList.value.length - 1]
-      lastNode && lastNode.children.forEach((n) => (n.checked = false))
+    function setBrotherNodeCheckedState(node: TreeNode) {
+      if (node.checked) {
+      } else {
+        const lastNode = breadcrumbList.value[breadcrumbList.value.length - 1]
+        lastNode && lastNode.children.forEach((n) => (n.checked = false))
+      }
     }
 
     function updateParentCheckedState() {

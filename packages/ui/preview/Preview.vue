@@ -26,7 +26,15 @@
   }
   const treeData = ref<TreeNode[]>([])
   onMounted(() => {
-    treeData.value = mockTree
+    setTimeout(() => {
+      treeData.value = mockTree
+    }, 3000)
+  })
+  watch(visibleRef, () => {
+    if (visibleRef.value) {
+      inputValue.value = ''
+      checked.value = []
+    }
   })
   watch(checked, (val) => {
     if (val.length > 0) {

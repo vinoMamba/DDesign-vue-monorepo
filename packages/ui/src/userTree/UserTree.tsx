@@ -20,6 +20,11 @@ export default defineComponent({
       type: Array as PropType<TreeNode[]>,
       required: true,
     },
+    checked: {
+      type: Array as PropType<TreeNode[]>,
+      required: true,
+      default: () => [],
+    },
     visible: {
       type: Boolean,
       default: false,

@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, ref, watch, watchEffect, type PropType } from 'vue'
+import { defineComponent, ref, watch, type PropType } from 'vue'
 import { DInput } from '../components'
 import { UserTreeNodeList, type UniqueTreeNode } from './components/UserTreeNodeList'
 import type { TreeNode } from './type'
@@ -16,7 +16,6 @@ export const UserTreeContent = defineComponent({
   emits: ['checked', 'search'],
   setup(props, { emit }) {
     const searchContent = ref('')
-    const listRef = ref<TreeNode[]>([])
     const checkedNodes = ref<TreeNode[]>([])
     const deleteNode = ref<UniqueTreeNode>()
     function createUniqueNode(node: TreeNode) {
@@ -25,12 +24,6 @@ export const UserTreeContent = defineComponent({
         uniqueId: Symbol(),
       }
     }
-    onMounted(() => {
-      listRef.value = props.treeData
-    })
-    watchEffect(() => {
-      listRef.value = props.treeData
-    })
     watch(checkedNodes, (newValue) => {
       emit('checked', newValue)
     })
@@ -42,7 +35,7 @@ export const UserTreeContent = defineComponent({
         <div class="dtd-user-tree-content-left">
           <DInput v-model:value={searchContent.value} placeholder="搜索" />
           <UserTreeNodeList
-            list={listRef.value}
+            list={props.treeData}
             v-model:checkedNodes={checkedNodes.value}
             deleteNode={deleteNode.value}
           />
