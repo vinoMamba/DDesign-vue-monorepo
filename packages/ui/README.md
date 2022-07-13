@@ -12,8 +12,8 @@
 #### 通用组件
 
 1. [x] Button
-2. Input
-3. InputPassword
+2. [x] Input
+3. [x] InputPassword
 4. Switch 
 5. Divider
 
@@ -43,9 +43,9 @@
 #### 反馈
 
 20. Drawer
-21. Modal
+21. [x] Modal
 22. Notification
 23. Popconfirm
-24. Popover
-25. Message
-26. Tooltip
+24. [x] Popover
+25. [x] Message
+26. [x] Tooltip
