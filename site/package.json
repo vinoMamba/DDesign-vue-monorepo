@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@vino/dt-design": "workspace:^",
-    "vue": "3.2.21"
+    "vue": "3.2.33"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
