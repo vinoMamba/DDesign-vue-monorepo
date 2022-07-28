@@ -36,7 +36,6 @@ export const UserTreeContent = defineComponent({
       emit('search', value)
     })
     watchEffect(() => {
-      console.log('fuck')
       checkedNodes.value = props.checked
     })
     return () => (

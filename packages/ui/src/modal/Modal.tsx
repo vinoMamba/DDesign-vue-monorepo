@@ -1,4 +1,4 @@
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, watch, nextTick } from 'vue'
 import './style'
 import { DButton } from '../components'
 import { CloseOutline } from '@vicons/ionicons5'
@@ -58,10 +58,20 @@ export default defineComponent({
     function cancel() {
       emit('update:visible', false)
     }
+    watch(
+      () => props.visible,
+      (value) => {
+        if (value) {
+          nextTick(() => {
+            document.body.appendChild(wrapperRef.value!)
+          })
+        }
+      },
+    )
     return () => (
-      <>
+      <div ref={wrapperRef}>
         {props.visible ? (
-          <div class={classesRef.value} ref={wrapperRef}>
+          <div class={classesRef.value}>
             <div class="dtd-modal-overlay" />
             <div class={wrapperClassesRef.value}>
               <div class="dtd-modal">
@@ -92,7 +102,7 @@ export default defineComponent({
             </div>
           </div>
         ) : null}
-      </>
+      </div>
     )
   },
 })

@@ -70,7 +70,7 @@ export default defineComponent({
       search.value = e
     }
     return () => (
-      <>
+      <div>
         <DModal v-model:visible={props.visible} hideHeader>
           {{
             content: () => (
@@ -91,7 +91,7 @@ export default defineComponent({
             ),
           }}
         </DModal>
-      </>
+      </div>
     )
   },
 })
