@@ -1,14 +1,14 @@
 import { defineComponent } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import { Nav } from './components/Nav'
 
 export const App = defineComponent({
   setup() {
     return () => (
-      <div>
-        <RouterLink to={'/home'}>home</RouterLink>
-        <RouterLink to={'/doc'}>doc</RouterLink>
+      <>
+        <Nav />
         <RouterView />
-      </div>
+      </>
     )
   },
 })
