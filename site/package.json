@@ -2,20 +2,20 @@
   "name": "site",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vino/dt-design": "workspace:^",
-    "vue": "3.2.33"
+    "vue": "^3.2.37",
+    "@vino/dt-design": "workspace:^"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.1",
-    "typescript": "^4.5.4",
-    "vite": "^2.9.7",
-    "vite-plugin-dts": "^1.1.1",
-    "vue-tsc": "^0.34.7"
+    "@vitejs/plugin-vue": "^3.0.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vue-tsc": "^0.38.4"
   }
 }
