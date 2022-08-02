@@ -18,6 +18,9 @@
   user-select: none;
   box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
 
+  a {
+    color: var(--common_level1_base_color, #171a1d);
+  }
 }
 
 .left {
@@ -37,7 +40,4 @@
   padding: 0 12px;
   margin: 0 12px;
 
-  a {
-    color: var(--common_level1_base_color, #171a1d);
-  }
 }

@@ -1,7 +1,28 @@
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { RouterLink, RouterView } from 'vue-router'
+import s from './doc.module.scss'
 
 export const Doc = defineComponent({
   setup() {
-    return () => <h1>Doc</h1>
+    const componentList = ref([
+      { link: 'button', title: '按钮', enTitle: 'Button' },
+      { link: 'button', title: '输入框', enTitle: 'Input' },
+    ])
+    return () => (
+      <div class={s.wrapper}>
+        <aside>
+          <ul>
+            {componentList.value.map((component) => (
+              <li key={component.enTitle}>
+                <RouterLink to={`/doc/${component.link}`}>{component.title}</RouterLink>
+              </li>
+            ))}
+          </ul>
+        </aside>
+        <main>
+          <RouterView />
+        </main>
+      </div>
+    )
   },
 })

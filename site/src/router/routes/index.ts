@@ -16,7 +16,12 @@ const DocRouter: RouteRecordRaw = {
   path: '/doc',
   name: 'Doc',
   component: Doc,
-  children: [],
+  children: [
+    {
+      path: '/doc/button',
+      component: () => import('/src/page/Button.vue'),
+    },
+  ],
 }
 const basicRoutes = [RootRouter, HomeRouter]
 
