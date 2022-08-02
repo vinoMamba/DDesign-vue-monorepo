@@ -10,12 +10,11 @@ export const Home = defineComponent({
         <div class={s['page-one']}>
           <div class={s.content}>
             <p class={s.slogan}>企业级产品设计系统</p>
-            <DButton type="primary">
+            <DButton type="primary" size="large">
               <RouterLink to={'/doc'}>开始使用</RouterLink>
             </DButton>
           </div>
         </div>
-        <div class={s['page-two']}>home</div>
       </>
     )
   },
