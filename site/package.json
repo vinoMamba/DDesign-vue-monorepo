@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@vino/dt-design": "workspace:^",
+    "github-markdown-css": "^5.1.0",
+    "prismjs": "^1.28.0",
     "vue": "^3.2.37",
     "vue-router": "4"
   },
