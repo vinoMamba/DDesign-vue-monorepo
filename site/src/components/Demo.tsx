@@ -29,10 +29,10 @@ export const Demo = defineComponent({
     }
     return () => (
       <>
-        <h2 class={s.title}>{props.title}</h2>
+        <h6 class={s.title}>{props.title}</h6>
         {props.demoList.map((demo) => (
           <div class={s.demo} key={demo.title}>
-            <h2>{demo.title}</h2>
+            <p>{demo.title}</p>
             <div class={s['demo-component']}>{h(demo.component)}</div>
             <div class={s['demo-actions']}>
               {demo.codeVisible ? (
