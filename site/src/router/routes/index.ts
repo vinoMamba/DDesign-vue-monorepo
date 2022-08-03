@@ -22,6 +22,10 @@ const DocRouter: RouteRecordRaw = {
       path: '/doc/button',
       component: ButtonDemo,
     },
+    {
+      path: '/doc/input',
+      component: ButtonDemo,
+    },
   ],
 }
 const basicRoutes = [RootRouter, HomeRouter]

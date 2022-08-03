@@ -6,7 +6,7 @@ export const Doc = defineComponent({
   setup() {
     const componentList = ref([
       { link: 'button', title: '按钮', enTitle: 'Button' },
-      { link: 'button', title: '输入框', enTitle: 'Input' },
+      { link: 'input', title: '输入框', enTitle: 'Input' },
     ])
     return () => (
       <div class={s.wrapper}>
@@ -14,7 +14,9 @@ export const Doc = defineComponent({
           <ul>
             {componentList.value.map((component) => (
               <li key={component.enTitle}>
-                <RouterLink to={`/doc/${component.link}`}>{component.title}</RouterLink>
+                <RouterLink to={`/doc/${component.link}`} activeClass={s['router-link-active']}>
+                  {component.title}
+                </RouterLink>
               </li>
             ))}
           </ul>

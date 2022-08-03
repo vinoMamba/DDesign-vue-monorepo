@@ -31,6 +31,14 @@
           outline: none;
           cursor: pointer;
           color: var(--common_level2_base_color, rgba(23, 26, 29, .6));
+          border-radius: 5px;
+
+          &.router-link-active {
+            background: hsla(210, 7%, 53%, .16);
+            color: var(--common_level1_base_color, #171a1d);
+            border-radius: 5px;
+
+          }
         }
 
         &:hover {
@@ -41,6 +49,7 @@
             font-weight: bold;
           }
         }
+
       }
     }
   }
