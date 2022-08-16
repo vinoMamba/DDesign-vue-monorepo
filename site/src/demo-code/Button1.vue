@@ -6,8 +6,4 @@
   <DButton type="primary">primary</DButton>
   <DButton type="danger">danger</DButton>
 </template>
-<style>
-  :deep(.dtd-button) {
-    color: red;
-  }
-</style>
+<style scoped></style>
