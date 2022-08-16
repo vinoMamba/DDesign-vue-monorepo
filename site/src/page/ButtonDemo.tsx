@@ -5,6 +5,7 @@ import { Demo, DemoType } from '../components/Demo'
 import Button1 from '../demo-code/Button1.vue'
 import Button2 from '../demo-code/Button2.vue'
 import Button3 from '../demo-code/Button3.vue'
+import Button4 from '../demo-code/Button4.vue'
 
 export const ButtonDemo = defineComponent({
   name: 'ButtonDemo',
@@ -13,7 +14,7 @@ export const ButtonDemo = defineComponent({
       {
         codeVisible: false,
         title: '基础按钮，可以disabled属性',
-        component: Button1,
+        component: shallowRef(Button1),
       },
       {
         codeVisible: false,
@@ -24,7 +25,12 @@ export const ButtonDemo = defineComponent({
       {
         codeVisible: false,
         title: '添加 disabled 属性即可让按钮处于不可用状态，同时按钮样式也会改变。',
-        component: Button3,
+        component: shallowRef(Button3),
+      },
+      {
+        codeVisible: false,
+        title: '添加 loading 属性即可让按钮处于加载状态，最后两个按钮演示点击后进入加载状态。',
+        component: shallowRef(Button4),
       },
     ])
     const apiList = ref<ApiType[]>([
