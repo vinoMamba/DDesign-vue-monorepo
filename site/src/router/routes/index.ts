@@ -2,6 +2,7 @@ import { RouteRecordRaw } from 'vue-router'
 import { Doc } from '../../views/Doc'
 import { Home } from '../../views/Home'
 import { ButtonDemo } from '../../page/ButtonDemo'
+import { InputDemo } from '../../page/InputDemo'
 const RootRouter: RouteRecordRaw = {
   path: '/',
   name: 'Root',
@@ -24,7 +25,7 @@ const DocRouter: RouteRecordRaw = {
     },
     {
       path: '/doc/input',
-      component: ButtonDemo,
+      component: InputDemo,
     },
   ],
 }
