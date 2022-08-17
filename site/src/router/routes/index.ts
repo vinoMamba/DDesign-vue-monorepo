@@ -3,6 +3,7 @@ import { Doc } from '../../views/Doc'
 import { Home } from '../../views/Home'
 import { ButtonDemo } from '../../page/ButtonDemo'
 import { InputDemo } from '../../page/InputDemo'
+import { MessageDemo } from '../../page/MessageDemo'
 const RootRouter: RouteRecordRaw = {
   path: '/',
   name: 'Root',
@@ -26,6 +27,10 @@ const DocRouter: RouteRecordRaw = {
     {
       path: '/doc/input',
       component: InputDemo,
+    },
+    {
+      path: '/doc/message',
+      component: MessageDemo,
     },
   ],
 }

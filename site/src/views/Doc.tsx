@@ -7,6 +7,7 @@ export const Doc = defineComponent({
     const componentList = ref([
       { link: 'button', title: '按钮', enTitle: 'Button' },
       { link: 'input', title: '输入框', enTitle: 'Input' },
+      { link: 'message', title: '消息', enTitle: 'Message' },
     ])
     return () => (
       <div class={s.wrapper}>
