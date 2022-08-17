@@ -7,6 +7,8 @@ import { MessageDemo } from '../../page/MessageDemo'
 import { ModalDemo } from '../../page/ModalDemo'
 import { TooltipDemo } from '../../page/TooltipDemo'
 import { PopoverDemo } from '../../page/PopoverDemo'
+import { PopoverConfirmDemo } from '../../page/PopoverConfirmDemo'
+import { DingUserTreeDemo } from '../../page/DingUserTreeDemo'
 
 const RootRouter: RouteRecordRaw = {
   path: '/',
@@ -47,6 +49,14 @@ const DocRouter: RouteRecordRaw = {
     {
       path: '/doc/popover',
       component: PopoverDemo,
+    },
+    {
+      path: '/doc/popoverConfirm',
+      component: PopoverConfirmDemo,
+    },
+    {
+      path: '/doc/userTree',
+      component: DingUserTreeDemo,
     },
   ],
 }
