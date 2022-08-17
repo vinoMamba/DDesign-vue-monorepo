@@ -10,6 +10,7 @@ export const Doc = defineComponent({
       { link: 'message', title: '消息', enTitle: 'Message' },
       { link: 'modal', title: '对话框', enTitle: 'Modal' },
       { link: 'tooltip', title: '文字提示', enTitle: 'Tooltip' },
+      { link: 'popover', title: '气泡卡片', enTitle: 'Popover' },
     ])
     return () => (
       <div class={s.wrapper}>

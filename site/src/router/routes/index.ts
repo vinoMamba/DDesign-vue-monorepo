@@ -6,6 +6,8 @@ import { InputDemo } from '../../page/InputDemo'
 import { MessageDemo } from '../../page/MessageDemo'
 import { ModalDemo } from '../../page/ModalDemo'
 import { TooltipDemo } from '../../page/TooltipDemo'
+import { PopoverDemo } from '../../page/PopoverDemo'
+
 const RootRouter: RouteRecordRaw = {
   path: '/',
   name: 'Root',
@@ -41,6 +43,10 @@ const DocRouter: RouteRecordRaw = {
     {
       path: '/doc/tooltip',
       component: TooltipDemo,
+    },
+    {
+      path: '/doc/popover',
+      component: PopoverDemo,
     },
   ],
 }
