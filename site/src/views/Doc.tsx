@@ -9,6 +9,7 @@ export const Doc = defineComponent({
       { link: 'input', title: '输入框', enTitle: 'Input' },
       { link: 'message', title: '消息', enTitle: 'Message' },
       { link: 'modal', title: '对话框', enTitle: 'Modal' },
+      { link: 'tooltip', title: '文字提示', enTitle: 'Tooltip' },
     ])
     return () => (
       <div class={s.wrapper}>
