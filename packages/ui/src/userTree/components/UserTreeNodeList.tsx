@@ -151,6 +151,11 @@ export const UserTreeNodeList = defineComponent({
     function createName(node: TreeNode) {
       return node.name.slice(0, 2)
     }
+    const firstLoad = ref(true)
+    const length = computed(() => nodeList.value.length)
+    watch(length, (newValue, oldValue) => {
+      firstLoad.value = oldValue === 0 && newValue > 0
+    })
     return () => (
       <div class="dtd-user-tree-node-list-layout">
         <ol class="dtd-user-tree-node-list-breadcrumb">
@@ -182,7 +187,25 @@ export const UserTreeNodeList = defineComponent({
             </li>
           ) : null}
           {nodeList.value.length === 0 ? (
-            <li class="dtd-user-tree-node-list-empty">暂无数据</li>
+            firstLoad.value ? (
+              <li class="dtd-user-tree-node-list-loading">
+                <div class="letter-holder">
+                  <div class="l-1 letter">数</div>
+                  <div class="l-2 letter">据</div>
+                  <div class="l-3 letter">加</div>
+                  <div class="l-4 letter">载</div>
+                  <div class="l-5 letter">中</div>
+                  <div class="l-6 letter">.</div>
+                  <div class="l-7 letter">.</div>
+                  <div class="l-8 letter">.</div>
+                  <div class="l-9 letter">.</div>
+                  <div class="l-10 letter">.</div>
+                  <div class="l-10 letter">.</div>
+                </div>
+              </li>
+            ) : (
+              <li class="dtd-user-tree-node-list-empty">暂无数据</li>
+            )
           ) : (
             nodeList.value.map((node) => (
               <li key={node.id}>
