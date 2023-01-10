@@ -46,7 +46,7 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ['update:visible', 'update:checked', 'update:search'],
+  emits: ['update:visible', 'update:checked', 'update:search', 'submit', 'cancel'],
   setup(props, { emit }) {
     provide(userTreeInjection, {
       multiple: () => props.multiple,
@@ -56,9 +56,13 @@ export default defineComponent({
     })
     const search = ref('')
     const checked = ref<TreeNode[]>([])
-    const handleClose = () => {
+    const handleClose = (e: MouseEvent) => {
+      emit('cancel', e)
       emit('update:visible', false)
+    }
+    const handleOk = (e: MouseEvent) => {
       emit('update:checked', checked.value)
+      emit('submit', e)
     }
     function onChecked(e: TreeNode[]) {
       checked.value = e
@@ -84,7 +88,7 @@ export default defineComponent({
             footer: () => (
               <div class="dtd-user-tree-footer">
                 <DButton onClick={() => handleClose()}>取消</DButton>
-                <DButton type="primary" onClick={() => handleClose()}>
+                <DButton type="primary" onClick={() => handleOk()}>
                   确认
                 </DButton>
               </div>
