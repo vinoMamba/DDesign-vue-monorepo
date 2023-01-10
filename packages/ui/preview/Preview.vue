@@ -6,6 +6,7 @@
       :tree-data="treeData"
       show-user-count
       mode="andUser"
+      :ok="handleSubmit"
       :multiple="false"
       v-model:checked="checked"
     />
@@ -33,6 +34,14 @@
       },
     ]
   }, 4000)
+  async function handleSubmit() {
+    console.log('确定按钮')
+    await new Promise((resolve) => {
+      setTimeout(function () {
+        resolve(true)
+      }, 1000)
+    })
+  }
 </script>
 <style scoped>
   main {

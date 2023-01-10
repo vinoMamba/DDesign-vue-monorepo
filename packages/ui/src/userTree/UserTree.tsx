@@ -45,6 +45,9 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    ok: {
+      type: Function,
+    },
   },
   emits: ['update:visible', 'update:checked', 'update:search'],
   setup(props, { emit }) {
@@ -57,6 +60,7 @@ export default defineComponent({
     const search = ref('')
     const checked = ref<TreeNode[]>([])
     const handleClose = () => {
+      props.ok?.()
       emit('update:visible', false)
       emit('update:checked', checked.value)
     }
