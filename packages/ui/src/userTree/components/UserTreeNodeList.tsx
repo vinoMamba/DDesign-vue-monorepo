@@ -1,13 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  inject,
-  onMounted,
-  type PropType,
-  ref,
-  watch,
-  watchEffect,
-} from 'vue'
+import { computed, defineComponent, inject, onMounted, type PropType, ref, watch } from 'vue'
 import type { TreeNode } from '../type'
 import './style/userTreeNodeList.less'
 import { type UserTreeInjection, userTreeInjection } from '../UserTree'
@@ -142,9 +133,12 @@ export const UserTreeNodeList = defineComponent({
         })
       },
     )
-    watchEffect(() => {
-      updateNodeList(props.list, { mode: UserTree.mode() })
-    })
+    watch(
+      () => props.list,
+      (val) => {
+        updateNodeList(val, { mode: UserTree.mode() })
+      },
+    )
     onMounted(() => {
       updateNodeList(props.list, { mode: UserTree.mode() })
     })

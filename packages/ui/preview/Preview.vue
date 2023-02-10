@@ -1,12 +1,13 @@
 <template>
   <main>
+    {{ treeData }}
     <DInput v-model:value="inputValue" type="password" @focus="visible = !visible" />
     <DUserTree
       v-model:visible="visible"
       :tree-data="treeData"
       show-user-count
-      mode="andUser"
-      :multiple="false"
+      mode="department"
+      :multiple="true"
       v-model:checked="checked"
     />
   </main>
@@ -21,6 +22,7 @@
   const inputValue = ref('')
   const treeData = ref<TreeNode[]>([])
   setTimeout(() => {
+    console.log('fffff')
     treeData.value = [
       {
         id: '1',
@@ -29,10 +31,47 @@
         checked: false,
         avatar: null,
         peopleCount: 0,
-        children: [],
+        children: [
+          {
+            id: '2',
+            name: 'child-1',
+            type: 0,
+            checked: false,
+            avatar: null,
+            peopleCount: 0,
+            children: [],
+          },
+          {
+            id: '3',
+            name: 'child-2',
+            type: 0,
+            checked: false,
+            avatar: null,
+            peopleCount: 0,
+            children: [],
+          },
+          {
+            id: '4',
+            name: 'child-3',
+            type: 0,
+            checked: false,
+            avatar: null,
+            peopleCount: 0,
+            children: [],
+          },
+          {
+            id: '5',
+            name: 'child-5',
+            type: 0,
+            checked: false,
+            avatar: null,
+            peopleCount: 0,
+            children: [],
+          },
+        ],
       },
     ]
-  }, 4000)
+  }, 0)
 </script>
 <style scoped>
   main {
