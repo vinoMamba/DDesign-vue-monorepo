@@ -25,6 +25,7 @@ const DocRouter: RouteRecordRaw = {
   path: '/doc',
   name: 'Doc',
   component: Doc,
+  redirect: '/doc/button',
   children: [
     {
       path: '/doc/button',

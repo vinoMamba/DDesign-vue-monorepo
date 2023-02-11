@@ -9,7 +9,7 @@ export const Home = defineComponent({
       <>
         <div class={s['page-one']}>
           <div class={s.content}>
-            <p class={s.slogan}>企业级产品设计系统</p>
+            <p class={s.slogan}>钉钉风格的UI组件库</p>
             <DButton type="primary" size="large">
               <RouterLink to={'/doc'}>开始使用</RouterLink>
             </DButton>

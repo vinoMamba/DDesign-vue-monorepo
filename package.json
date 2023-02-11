@@ -11,7 +11,7 @@
     "test:ui": "pnpm --filter=@vino/dt-design test:unit",
     "ui:preview": "pnpm --filter=@vino/dt-design run dev",
     "site": "pnpm --filter=site dev",
-    "site-build": "pnpm --filter=site run build",
+    "build:site": "pnpm --filter=site run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepare": "husky install"
