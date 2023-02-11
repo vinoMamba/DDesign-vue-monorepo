@@ -1,9 +1,10 @@
-import { defineComponent, h, PropType, Transition } from 'vue'
+import type { PropType } from 'vue'
+import { Transition, defineComponent, h } from 'vue'
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import s from './demo.module.scss'
 
-export type DemoType = {
+export interface DemoType {
   codeVisible: boolean
   title: string
   component: Object
@@ -30,30 +31,34 @@ export const Demo = defineComponent({
     return () => (
       <>
         <h6 class={s.title}>{props.title}</h6>
-        {props.demoList.map((demo) => (
+        {props.demoList.map(demo => (
           <div class={s.demo} key={demo.title}>
             <p>{demo.title}</p>
             <div class={s['demo-component']}>{h(demo.component)}</div>
             <div class={s['demo-actions']}>
-              {demo.codeVisible ? (
+              {demo.codeVisible
+                ? (
                 <div class={s['demo-actions-button']} onClick={() => (demo.codeVisible = false)}>
                   隐藏示例代码
                 </div>
-              ) : (
+                  )
+                : (
                 <div
                   class={s['demo-actions-button-watch']}
                   onClick={() => (demo.codeVisible = true)}
                 >
                   查看示例代码
                 </div>
-              )}
+                  )}
             </div>
             <Transition name={s['code-source']}>
-              {demo.codeVisible ? (
+              {demo.codeVisible
+                ? (
                 <div class={s['demo-code']}>
                   <pre class={s['language-html']} v-html={getHtml(demo.component)}></pre>
                 </div>
-              ) : null}
+                  )
+                : null}
             </Transition>
           </div>
         ))}

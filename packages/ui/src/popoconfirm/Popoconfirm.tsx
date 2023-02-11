@@ -1,6 +1,6 @@
+import { type HTMLAttributes, type PropType, defineComponent, ref } from 'vue'
+import { DButton, DPopover } from '../components'
 import type { ButtonProps } from '@/button/buttonTypes'
-import { defineComponent, ref, type HTMLAttributes, type PropType } from 'vue'
-import { DPopover, DButton } from '../components'
 import './style'
 
 export default defineComponent({

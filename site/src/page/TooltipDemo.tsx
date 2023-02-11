@@ -1,6 +1,8 @@
 import { defineComponent, ref, shallowRef } from 'vue'
-import { Api, ApiType } from '../components/Api'
-import { Demo, DemoType } from '../components/Demo'
+import type { ApiType } from '../components/Api'
+import { Api } from '../components/Api'
+import type { DemoType } from '../components/Demo'
+import { Demo } from '../components/Demo'
 import Tooltip1 from '../demo-code/Tooltip1.vue'
 
 export const TooltipDemo = defineComponent({

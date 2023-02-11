@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { Doc } from '../../views/Doc'
 import { Home } from '../../views/Home'
 import { ButtonDemo } from '../../page/ButtonDemo'

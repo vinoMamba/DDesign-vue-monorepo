@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, onUnmounted, ref, Transition } from 'vue'
+import { Transition, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import './style'
 
 export default defineComponent({

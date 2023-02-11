@@ -1,4 +1,4 @@
-import { inject, type App, h, createApp, type InjectionKey, type VNode } from 'vue'
+import { type App, type InjectionKey, type VNode, createApp, h, inject } from 'vue'
 import DMessage from './Message'
 
 export interface MessageContextProp {
@@ -45,8 +45,8 @@ export default {
 
 export function useMessage() {
   const message = inject(messageSymbolKey)
-  if (!message) {
+  if (!message)
     throw new Error('useMessage must be used in a plugin')
-  }
+
   return message
 }

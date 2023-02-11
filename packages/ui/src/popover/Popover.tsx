@@ -1,13 +1,13 @@
 import {
+  type PropType,
+  Transition,
   defineComponent,
   nextTick,
   onMounted,
   onUnmounted,
   ref,
-  Transition,
   watch,
   watchEffect,
-  type PropType,
 } from 'vue'
 import './style'
 
@@ -101,16 +101,15 @@ export default defineComponent({
           left: left + window.scrollX - width2 - 10,
         },
       }
-      popoverContentRef.value!.style.left = positions[props.placement].left + 'px'
-      popoverContentRef.value!.style.top = positions[props.placement].top + 'px'
+      popoverContentRef.value!.style.left = `${positions[props.placement].left}px`
+      popoverContentRef.value!.style.top = `${positions[props.placement].top}px`
     }
     function onClickOutside(event: MouseEvent) {
       if (
-        !popoverContentRef.value?.contains(event.target as Node) &&
-        !popoverTriggerRef.value?.contains(event.target as Node)
-      ) {
+        !popoverContentRef.value?.contains(event.target as Node)
+        && !popoverTriggerRef.value?.contains(event.target as Node)
+      )
         close()
-      }
     }
     function open() {
       visible.value = true
@@ -129,16 +128,16 @@ export default defineComponent({
     }
 
     function toggleVisibility(event: MouseEvent) {
-      if (popoverTriggerRef.value && popoverTriggerRef.value.contains(event.target as Node)) {
+      if (popoverTriggerRef.value && popoverTriggerRef.value.contains(event.target as Node))
         visible.value ? close() : open()
-      }
     }
 
     function bindEventToPopover() {
       if (popoverRef.value) {
         if (props.trigger === 'click') {
           popoverRef.value.addEventListener('click', toggleVisibility)
-        } else {
+        }
+        else {
           popoverRef.value.addEventListener('mouseenter', open)
           popoverRef.value.addEventListener('mouseleave', close)
         }
@@ -148,7 +147,8 @@ export default defineComponent({
       if (popoverRef.value) {
         if (props.trigger === 'click') {
           popoverRef.value.removeEventListener('click', toggleVisibility)
-        } else {
+        }
+        else {
           popoverRef.value.removeEventListener('mouseenter', open)
           popoverRef.value.removeEventListener('mouseleave', close)
         }
@@ -158,14 +158,13 @@ export default defineComponent({
     onMounted(() => {
       bindEventToPopover()
     })
-    //watch visible
+    // watch visible
     watch(visible, (value1) => {
       emit('update:show', value1)
     })
     watchEffect(() => {
-      if (!props.show) {
+      if (!props.show)
         close()
-      }
     })
     onUnmounted(() => {
       unbindEventToPopover()
@@ -173,12 +172,14 @@ export default defineComponent({
     return () => (
       <div class="dtd-popover" ref={popoverRef}>
         <Transition>
-          {visible.value ? (
+          {visible.value
+            ? (
             <div class="dtd-popover-content-wrapper" ref={popoverContentRef}>
               {slots.title ? <div class="dtd-popover-title">{slots.title()}</div> : null}
               {slots.content ? <div class="dtd-popover-content">{slots.content()}</div> : null}
             </div>
-          ) : null}
+              )
+            : null}
         </Transition>
         <div ref={popoverTriggerRef}>{slots.default?.()}</div>
       </div>

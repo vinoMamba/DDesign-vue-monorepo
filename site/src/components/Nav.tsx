@@ -1,10 +1,10 @@
 import { defineComponent } from 'vue'
-import s from './nav.module.scss'
-import img from '../assets/logo.png'
 import { RouterLink } from 'vue-router'
+import img from '../assets/logo.png'
+import s from './nav.module.scss'
 
 export const Nav = defineComponent({
-  name: 'Nav',
+  name: 'SiteNav',
   setup() {
     return () => (
       <header class={s.wrapper}>

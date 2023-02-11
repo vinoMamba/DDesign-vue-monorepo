@@ -1,10 +1,10 @@
-import { computed, defineComponent, inject, onMounted, type PropType, ref, watch } from 'vue'
+import { type PropType, computed, defineComponent, inject, onMounted, ref, watch } from 'vue'
+import { ChevronForward } from '@vicons/ionicons5'
 import type { TreeNode } from '../type'
 import './style/userTreeNodeList.less'
 import { type UserTreeInjection, userTreeInjection } from '../UserTree'
 import { getCheckedNodes, traverseNodeList, traverseTree, traverseTreeByType } from '../utils'
-import { ChevronForward } from '@vicons/ionicons5'
-//@ts-ignore
+// @ts-expect-error: Unreachable code error
 import imgUrl from '../images/dep.png'
 
 // 由于vue3 里面的watch 是懒监听，必须加一个symbol值保证唯一
@@ -44,12 +44,13 @@ export const UserTreeNodeList = defineComponent({
     }
     const getNext = (node: TreeNode) => {
       checkedAll.value = false
-      if (node.type === 1) return
+      if (node.type === 1)
+        return
       breadcrumbList.value.push(node)
       updateNodeList(node.children, { mode: UserTree.mode() })
     }
     const getPrev = (node: TreeNode) => {
-      const index = breadcrumbList.value.findIndex((n) => n.id === node.id)
+      const index = breadcrumbList.value.findIndex(n => n.id === node.id)
       breadcrumbList.value = breadcrumbList.value.slice(0, index + 1)
       updateNodeList(node.children, { mode: UserTree.mode() })
     }
@@ -57,9 +58,8 @@ export const UserTreeNodeList = defineComponent({
     function updateNodeList(data: TreeNode[], options: { mode: 'andUser' | 'department' }) {
       nodeList.value = data
       const { mode } = options
-      if (mode === 'department') {
-        nodeList.value = nodeList.value.filter((node) => node.type === 0)
-      }
+      if (mode === 'department')
+        nodeList.value = nodeList.value.filter(node => node.type === 0)
     }
 
     function toggleChecked(e: Event, node: TreeNode) {
@@ -70,14 +70,16 @@ export const UserTreeNodeList = defineComponent({
           traverseTreeByType(node, 0, (n: TreeNode) => {
             n.checked = node.checked
           })
-        } else {
+        }
+        else {
           traverseTree(node, (n: TreeNode) => {
             n.checked = node.checked
           })
         }
         // change parent checked state
         updateParentCheckedState()
-      } else {
+      }
+      else {
         setBrotherNodeCheckedState(node)
         node.checked = !node.checked
       }
@@ -85,20 +87,18 @@ export const UserTreeNodeList = defineComponent({
     }
 
     function setBrotherNodeCheckedState(node: TreeNode) {
-      if (node.checked) {
-      } else {
+      if (!node.checked) {
         const lastNode = breadcrumbList.value[breadcrumbList.value.length - 1]
-        lastNode && lastNode.children.forEach((n) => (n.checked = false))
+        lastNode && lastNode.children.forEach(n => (n.checked = false))
       }
     }
 
     function updateParentCheckedState() {
       const lastNode = breadcrumbList.value[breadcrumbList.value.length - 1]
-      if (lastNode && lastNode.children.every((n) => n.checked)) {
+      if (lastNode && lastNode.children.every(n => n.checked))
         lastNode.checked = true
-      } else if (lastNode && !lastNode.children.some((n) => n.checked)) {
+      else if (lastNode && !lastNode.children.some(n => n.checked))
         lastNode.checked = false
-      }
     }
 
     function updateCheckedNodes() {
@@ -109,21 +109,21 @@ export const UserTreeNodeList = defineComponent({
     function toggleCheckedAll() {
       checkedAll.value = !checkedAll.value
       const lastNode = breadcrumbList.value[breadcrumbList.value.length - 1]
-      if (lastNode) {
-        lastNode.children.forEach((node) => (node.checked = checkedAll.value))
-      } else {
-        nodeList.value.forEach((node) => (node.checked = checkedAll.value))
-      }
+      if (lastNode)
+        lastNode.children.forEach(node => (node.checked = checkedAll.value))
+      else
+        nodeList.value.forEach(node => (node.checked = checkedAll.value))
+
       updateCheckedNodes()
     }
     const departmentDisabled = (node: TreeNode) => {
       return UserTree.mode() === 'andUser' && node.type === 0
     }
-    //watch deleteNode and changed checked state
+    // watch deleteNode and changed checked state
     watch(
       () => props.deleteNode,
       (newVal) => {
-        //traverse  nodeList to find node
+        // traverse  nodeList to find node
         traverseNodeList(nodeList.value, (node: TreeNode) => {
           if (node.id === newVal!.id) {
             node.checked = false
@@ -169,69 +169,81 @@ export const UserTreeNodeList = defineComponent({
           ))}
         </ol>
         <ul class="dtd-user-tree-node-list">
-          {UserTree.showAllCheckedButton() && UserTree.multiple() ? (
-            <li class="dtd-user-tree-node-list-checkedAll">
-              <input
-                type="checkbox"
-                class="dtd-user-tree-node-list-checkbox"
-                checked={checkedAll.value}
-                onChange={() => toggleCheckedAll()}
-              />
-              <span>全选</span>
-            </li>
-          ) : null}
-          {nodeList.value.length === 0 ? (
-            firstLoad.value ? (
-              <li class="dtd-user-tree-node-list-loading">
-                <div class="letter-holder">
-                  <div class="l-1 letter">数</div>
-                  <div class="l-2 letter">据</div>
-                  <div class="l-3 letter">加</div>
-                  <div class="l-4 letter">载</div>
-                  <div class="l-5 letter">中</div>
-                  <div class="l-6 letter">.</div>
-                  <div class="l-7 letter">.</div>
-                  <div class="l-8 letter">.</div>
-                  <div class="l-9 letter">.</div>
-                  <div class="l-10 letter">.</div>
-                  <div class="l-10 letter">.</div>
-                </div>
-              </li>
-            ) : (
-              <li class="dtd-user-tree-node-list-empty">暂无数据</li>
-            )
-          ) : (
-            nodeList.value.map((node) => (
-              <li key={node.id}>
+          {(UserTree.showAllCheckedButton() && UserTree.multiple())
+            ? (
+              <li class="dtd-user-tree-node-list-checkedAll">
                 <input
                   type="checkbox"
                   class="dtd-user-tree-node-list-checkbox"
-                  checked={node.checked}
-                  disabled={departmentDisabled(node)}
-                  onChange={(e: Event) => toggleChecked(e, node)}
+                  checked={checkedAll.value}
+                  onChange={() => toggleCheckedAll()}
                 />
-                <p class="dtd-user-tree-node">
-                  {node.type === 0 ? (
-                    <img src={imgUrl} alt="" class="dtd-user-tree-node-list-item-img" />
-                  ) : node.avatar ? (
-                    <img src={node.avatar} alt="" class="dtd-user-tree-node-list-item-img" />
-                  ) : (
-                    <span class="dtd-user-tree-node-list-item-name">{() => createName(node)}</span>
-                  )}
-                  <span class="dtd-user-tree-node-name">{node.name}</span>
-                  {node.type === 0 && userCountVisible.value ? (
-                    <span class="dtd-user-tree-node-count">（{node.peopleCount || 0}）</span>
-                  ) : null}
-                </p>
-                {node.type === 0 && (
-                  <span class="dtd-user-tree-node-next" onClick={() => getNext(node)}>
-                    下级
-                    <ChevronForward class="dtd-user-tree-node-next-icon" />
-                  </span>
-                )}
+                <span>全选</span>
               </li>
-            ))
-          )}
+              )
+            : null}
+          {nodeList.value.length === 0
+            ? (
+                firstLoad.value
+                  ? (
+                  <li class="dtd-user-tree-node-list-loading">
+                    <div class="letter-holder">
+                      <div class="l-1 letter">数</div>
+                      <div class="l-2 letter">据</div>
+                      <div class="l-3 letter">加</div>
+                      <div class="l-4 letter">载</div>
+                      <div class="l-5 letter">中</div>
+                      <div class="l-6 letter">.</div>
+                      <div class="l-7 letter">.</div>
+                      <div class="l-8 letter">.</div>
+                      <div class="l-9 letter">.</div>
+                      <div class="l-10 letter">.</div>
+                      <div class="l-10 letter">.</div>
+                    </div>
+                  </li>
+                    )
+                  : (
+                  <li class="dtd-user-tree-node-list-empty">暂无数据</li>
+                    )
+              )
+            : (
+                nodeList.value.map(node => (
+                <li key={node.id}>
+                  <input
+                    type="checkbox"
+                    class="dtd-user-tree-node-list-checkbox"
+                    checked={node.checked}
+                    disabled={departmentDisabled(node)}
+                    onChange={(e: Event) => toggleChecked(e, node)}
+                  />
+                  <p class="dtd-user-tree-node">
+                    {node.type === 0
+                      ? (
+                        <img src={imgUrl} alt="" class="dtd-user-tree-node-list-item-img" />
+                        )
+                      : node.avatar
+                        ? (
+                          <img src={node.avatar} alt="" class="dtd-user-tree-node-list-item-img" />
+                          )
+                        : (
+                          <span class="dtd-user-tree-node-list-item-name">{() => createName(node)}</span>
+                          )}
+                    <span class="dtd-user-tree-node-name">{node.name}</span>
+                    {(node.type === 0 && userCountVisible.value)
+                      ? (
+                        <span class="dtd-user-tree-node-count">（{node.peopleCount || 0}）</span>
+                        )
+                      : null}
+                  </p>
+                  {node.type === 0 && (
+                    <span class="dtd-user-tree-node-next" onClick={() => getNext(node)}>
+                      下级
+                      <ChevronForward class="dtd-user-tree-node-next-icon" />
+                    </span>
+                  )}
+                </li>
+                ))
+              )}
         </ul>
       </div>
     )

@@ -1,8 +1,8 @@
 import {
-  InformationCircleOutline,
-  CheckmarkCircleSharp,
   AlertCircleOutline,
+  CheckmarkCircleSharp,
   CloseCircleOutline,
+  InformationCircleOutline,
 } from '@vicons/ionicons5'
 
 export const MessageIcon = (type: 'info' | 'success' | 'warning' | 'error') => {

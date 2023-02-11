@@ -1,6 +1,6 @@
-import { defineComponent, ref, watch, watchEffect, type PropType } from 'vue'
+import { type PropType, defineComponent, ref, watch, watchEffect } from 'vue'
 import { DInput } from '../components'
-import { UserTreeNodeList, type UniqueTreeNode } from './components/UserTreeNodeList'
+import { type UniqueTreeNode, UserTreeNodeList } from './components/UserTreeNodeList'
 import type { TreeNode } from './type'
 import { UserTreeOperationList } from './components/UserTreeOperationList'
 import './style'
@@ -26,7 +26,7 @@ export const UserTreeContent = defineComponent({
     function createUniqueNode(node: TreeNode) {
       deleteNode.value = {
         ...node,
-        uniqueId: Symbol(),
+        uniqueId: Symbol('uniqueId'),
       }
     }
     watch(checkedNodes, (newValue) => {
@@ -51,7 +51,7 @@ export const UserTreeContent = defineComponent({
         <div class="dtd-user-tree-content-right">
           <UserTreeOperationList
             checkedNodes={checkedNodes.value}
-            onDelete={(node) => createUniqueNode(node)}
+            onDelete={node => createUniqueNode(node)}
           />
         </div>
       </div>

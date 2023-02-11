@@ -1,4 +1,4 @@
-import { computed, defineComponent, type PropType } from 'vue'
+import { type PropType, computed, defineComponent } from 'vue'
 import './style'
 import { CloseCircle } from '@vicons/ionicons5'
 
@@ -55,21 +55,23 @@ export default defineComponent({
     const inputClassRef = computed(() => {
       return {
         'dtd-input': true,
-        'dtd-input-prefix-wrapper': slots.prefix ? true : false,
-        'dtd-input-suffix-wrapper': slots.suffix ? true : false,
-        'dtd-input-close-wrapper': props.allowClear ? true : false,
+        'dtd-input-prefix-wrapper': !!slots.prefix,
+        'dtd-input-suffix-wrapper': !!slots.suffix,
+        'dtd-input-close-wrapper': !!props.allowClear,
       }
     })
     const closeIconRef = computed(() => {
-      return props.value ? true : false
+      return !!props.value
     })
     return () => (
       <span class="dtd-input-wrapper">
-        {slots.prefix ? (
+        {slots.prefix
+          ? (
           <span class="dtd-input-prefix">
             <span class="dtd-input-prefix-inner">{slots.prefix()}</span>
           </span>
-        ) : null}
+            )
+          : null}
         <input
           class={inputClassRef.value}
           type={props.type}
@@ -77,27 +79,33 @@ export default defineComponent({
           disabled={props.disabled}
           readonly={props.readonly}
           value={props.value}
-          onInput={(e) => onInputHandle(e)}
-          onChange={(e) => emit('change', (e.target as HTMLInputElement).value)}
-          onFocus={(e) => emit('focus', (e.target as HTMLInputElement).value)}
-          onBlur={(e) => emit('blur', (e.target as HTMLInputElement).value)}
+          onInput={e => onInputHandle(e)}
+          onChange={e => emit('change', (e.target as HTMLInputElement).value)}
+          onFocus={e => emit('focus', (e.target as HTMLInputElement).value)}
+          onBlur={e => emit('blur', (e.target as HTMLInputElement).value)}
         />
-        {props.allowClear ? (
+        {props.allowClear
+          ? (
           <span class="dtd-input-close">
-            {closeIconRef.value ? (
+            {closeIconRef.value
+              ? (
               <span class="dtd-input-close-inner">
                 <CloseCircle onClick={() => clearValue()} />
               </span>
-            ) : (
-              ''
-            )}
+                )
+              : (
+                  ''
+                )}
           </span>
-        ) : null}
-        {slots.suffix ? (
+            )
+          : null}
+        {slots.suffix
+          ? (
           <span class="dtd-input-suffix">
             <span class="dtd-input-suffix-inner">{slots.suffix()}</span>
           </span>
-        ) : null}
+            )
+          : null}
       </span>
     )
   },

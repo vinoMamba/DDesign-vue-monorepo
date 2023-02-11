@@ -18,7 +18,7 @@ export const Doc = defineComponent({
       <div class={s.wrapper}>
         <aside>
           <ul>
-            {componentList.value.map((component) => (
+            {componentList.value.map(component => (
               <li key={component.enTitle}>
                 <RouterLink to={`/doc/${component.link}`} activeClass={s['router-link-active']}>
                   {component.title}

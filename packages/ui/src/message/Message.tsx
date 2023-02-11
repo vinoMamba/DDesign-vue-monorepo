@@ -1,4 +1,4 @@
-import { computed, defineComponent, onMounted, ref, Transition } from 'vue'
+import { Transition, computed, defineComponent, onMounted, ref } from 'vue'
 import { MessageIcon } from './MessageIcon'
 import { messageProps } from './messageProps'
 import './style'
@@ -9,8 +9,8 @@ export default defineComponent({
   setup(props, { slots }) {
     const messageVisibleRef = ref(true)
     onMounted(() => {
-      props.duration &&
-        setTimeout(() => {
+      props.duration
+        && setTimeout(() => {
           messageVisibleRef.value = false
         }, props.duration)
     })
@@ -23,12 +23,14 @@ export default defineComponent({
     })
     return () => (
       <Transition>
-        {messageVisibleRef.value ? (
+        {messageVisibleRef.value
+          ? (
           <div class={classRef.value}>
             {MessageIcon(props.type)}
             {slots.default?.()}
           </div>
-        ) : null}
+            )
+          : null}
       </Transition>
     )
   },

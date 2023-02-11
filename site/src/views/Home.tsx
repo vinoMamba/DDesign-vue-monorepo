@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
-import s from './home.module.scss'
 import { DButton } from '@vino/dt-design'
 import { RouterLink } from 'vue-router'
+import s from './home.module.scss'
 
 export const Home = defineComponent({
   setup() {

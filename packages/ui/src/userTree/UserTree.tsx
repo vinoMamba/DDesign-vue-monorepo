@@ -1,5 +1,5 @@
-import { defineComponent, type InjectionKey, type PropType, provide, ref, watch } from 'vue'
-import { DModal, DButton } from '../components'
+import { type InjectionKey, type PropType, defineComponent, provide, ref, watch } from 'vue'
+import { DButton, DModal } from '../components'
 import { UserTreeContent } from './UserTreeContent'
 import type { TreeNode } from './type'
 import './style'
@@ -81,8 +81,8 @@ export default defineComponent({
               <UserTreeContent
                 checked={props.checked}
                 treeData={props.treeData}
-                onSearch={(e) => onSearch(e)}
-                onChecked={(e) => onChecked(e)}
+                onSearch={e => onSearch(e)}
+                onChecked={e => onChecked(e)}
               />
             ),
             footer: () => (

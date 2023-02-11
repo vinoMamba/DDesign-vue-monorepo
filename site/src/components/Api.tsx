@@ -1,4 +1,5 @@
-import { defineComponent, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
 import s from './api.module.scss'
 
 export interface ApiType {
@@ -30,7 +31,7 @@ export const Api = defineComponent({
               <span>可选值</span>
               <span>默认值</span>
             </li>
-            {props.apiList.map((item) => (
+            {props.apiList.map(item => (
               <li class={s['api-item']} key={item.attr}>
                 <span>{item.attr}</span>
                 <span>{item.notes}</span>

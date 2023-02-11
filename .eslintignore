@@ -13,3 +13,7 @@ dist
 .local
 /bin
 Dockerfile
+
+/packages/ui/es
+/packages/ui/lib
+

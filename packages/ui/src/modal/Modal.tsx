@@ -1,7 +1,7 @@
-import { defineComponent, computed, ref, watch, nextTick } from 'vue'
+import { computed, defineComponent, nextTick, ref, watch } from 'vue'
 import './style'
-import { DButton } from '../components'
 import { CloseOutline } from '@vicons/ionicons5'
+import { DButton } from '../components'
 
 export default defineComponent({
   name: 'DModal',
@@ -70,7 +70,8 @@ export default defineComponent({
     )
     return () => (
       <div ref={wrapperRef}>
-        {props.visible ? (
+        {props.visible
+          ? (
           <div class={classesRef.value}>
             <div class="dtd-modal-overlay" />
             <div class={wrapperClassesRef.value}>
@@ -87,21 +88,24 @@ export default defineComponent({
                 )}
                 <main class={props.dense ? 'dtd-modal-dense' : ''}>{slots.content?.()}</main>
                 <footer>
-                  {slots.footer ? (
-                    slots.footer?.()
-                  ) : (
+                  {slots.footer
+                    ? (
+                        slots.footer?.()
+                      )
+                    : (
                     <div class="dtd-modal-button-wrapper">
                       <DButton onClick={() => cancel()}>{props.cancelText}</DButton>
                       <DButton type="primary" onClick={(e: MouseEvent) => ok(e)}>
                         {props.okText}
                       </DButton>
                     </div>
-                  )}
+                      )}
                 </footer>
               </div>
             </div>
           </div>
-        ) : null}
+            )
+          : null}
       </div>
     )
   },
