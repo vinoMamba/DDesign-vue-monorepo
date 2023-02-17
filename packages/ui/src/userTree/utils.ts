@@ -27,14 +27,15 @@ export function traverseNodeList(nodeList: TreeNode[], callback: any) {
 }
 
 //get all checked nodes from nodeList
-export function getCheckedNodes(nodeList: TreeNode[]) {
+export function getCheckedNodes(nodeList: TreeNode[], mode: 'department' | 'andUser') {
+  const modeTag = mode === 'department' ? 0 : 1
   let checkedNodes: TreeNode[] = []
   nodeList.forEach((node) => {
-    if (node.checked) {
+    if (node.checked && node.type === modeTag) {
       checkedNodes.push(node)
     }
     if (node.children) {
-      checkedNodes = checkedNodes.concat(getCheckedNodes(node.children))
+      checkedNodes = checkedNodes.concat(getCheckedNodes(node.children, mode))
     }
   })
   return checkedNodes

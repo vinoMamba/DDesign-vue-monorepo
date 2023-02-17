@@ -6,9 +6,10 @@
       v-model:visible="visible"
       :tree-data="treeData"
       show-user-count
-      mode="department"
       :multiple="true"
+      mode="department"
       v-model:checked="checked"
+      @submit="visible = false"
     />
   </main>
 </template>
@@ -35,7 +36,7 @@
           {
             id: '2',
             name: 'child-1',
-            type: 0,
+            type: 1,
             checked: false,
             avatar: null,
             peopleCount: 0,

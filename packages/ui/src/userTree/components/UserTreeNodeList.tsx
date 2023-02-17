@@ -102,7 +102,7 @@ export const UserTreeNodeList = defineComponent({
     }
 
     function updateCheckedNodes() {
-      const checkedNodes = getCheckedNodes(nodeList.value)
+      const checkedNodes = getCheckedNodes(nodeList.value, UserTree.mode())
       emit('update:checkedNodes', checkedNodes)
     }
 
